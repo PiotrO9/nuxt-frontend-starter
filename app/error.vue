@@ -1,6 +1,6 @@
 ﻿<template>
     <div
-        class="min-h-dvh bg-white text-slate-950 dark:bg-slate-950 dark:text-slate-50"
+        class="min-h-dvh bg-white text-slate-950"
     >
         <div class="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-12">
             <div class="space-y-2">
@@ -12,7 +12,7 @@
                 </h1>
                 <p
                     v-if="description"
-                    class="text-pretty text-slate-700 dark:text-slate-200"
+                    class="text-pretty text-slate-700"
                 >
                     {{ description }}
                 </p>
@@ -21,7 +21,7 @@
             <Card aria-label="Card: Error actions">
                 <template #header>
                     <p
-                        class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                        class="text-sm font-semibold text-slate-900"
                     >
                         What would you like to do?
                     </p>

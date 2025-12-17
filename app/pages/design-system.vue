@@ -4,7 +4,7 @@
             <h1 class="text-3xl font-extrabold tracking-tight">
                 Design system
             </h1>
-            <p class="max-w-3xl text-slate-700 dark:text-slate-200">
+            <p class="max-w-3xl text-slate-700">
                 A single place to preview the Tailwind palette and the UI
                 building blocks used in this starter.
             </p>
@@ -16,7 +16,7 @@
             >
                 <div class="space-y-1">
                     <h2 class="text-xl font-bold tracking-tight">Colors</h2>
-                    <p class="text-sm text-slate-600 dark:text-slate-300">
+                    <p class="text-sm text-slate-600">
                         These are example tokens based on Tailwind utility
                         classes.
                     </p>
@@ -32,7 +32,7 @@
                     <template #header>
                         <div class="flex items-center justify-between gap-3">
                             <p
-                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                                class="text-sm font-semibold text-slate-900"
                             >
                                 {{ group.name }}
                             </p>
@@ -45,7 +45,7 @@
                             :key="swatch.name"
                             type="button"
                             tabindex="0"
-                            class="group flex w-full items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white/70 p-3 text-left transition hover:border-slate-300 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-800 dark:bg-slate-950/40 dark:hover:border-slate-700 dark:hover:bg-slate-950/60 dark:focus-visible:ring-offset-slate-950"
+                            class="group flex w-full items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white/70 p-3 text-left transition hover:border-slate-300 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                             :aria-label="`Copy ${group.name} ${swatch.name}: ${swatch.className}`"
                             @click="handleCopySwatch(group, swatch)"
                             @keydown="
@@ -54,19 +54,19 @@
                         >
                             <div class="flex min-w-0 items-center gap-3">
                                 <div
-                                    class="h-10 w-10 flex-none rounded-xl border border-slate-200 dark:border-slate-800"
+                                    class="h-10 w-10 flex-none rounded-xl border border-slate-200"
                                     :class="swatch.previewClass"
                                     :aria-label="`Color preview ${swatch.name}`"
                                     role="img"
                                 />
                                 <div class="min-w-0">
                                     <p
-                                        class="truncate text-sm font-semibold text-slate-900 dark:text-slate-50"
+                                        class="truncate text-sm font-semibold text-slate-900"
                                     >
                                         {{ swatch.name }}
                                     </p>
                                     <p
-                                        class="truncate font-mono text-xs text-slate-600 dark:text-slate-300"
+                                        class="truncate font-mono text-xs text-slate-600"
                                     >
                                         {{ swatch.className }}
                                     </p>
@@ -74,7 +74,7 @@
                             </div>
 
                             <span
-                                class="flex-none rounded-lg border border-slate-200 bg-white/70 px-2 py-1 text-xs font-semibold text-slate-600 opacity-100 transition group-hover:border-slate-300 group-hover:bg-white sm:opacity-0 sm:group-hover:opacity-100 dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-200 dark:group-hover:border-slate-700 dark:group-hover:bg-slate-950/70"
+                                class="flex-none rounded-lg border border-slate-200 bg-white/70 px-2 py-1 text-xs font-semibold text-slate-600 opacity-100 transition group-hover:border-slate-300 group-hover:bg-white sm:opacity-0 sm:group-hover:opacity-100"
                                 aria-hidden="true"
                             >
                                 Copy
@@ -92,7 +92,7 @@
                 <Card aria-label="Card: Actions">
                     <template #header>
                         <p
-                            class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            class="text-sm font-semibold text-slate-900"
                         >
                             Actions
                         </p>
@@ -101,7 +101,7 @@
                     <div class="space-y-6">
                         <div class="space-y-3">
                             <p
-                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                                class="text-sm font-semibold text-slate-900"
                             >
                                 Primary
                             </p>
@@ -126,7 +126,7 @@
 
                         <div class="space-y-3">
                             <p
-                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                                class="text-sm font-semibold text-slate-900"
                             >
                                 Secondary
                             </p>
@@ -156,7 +156,7 @@
 
                         <div class="space-y-3">
                             <p
-                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                                class="text-sm font-semibold text-slate-900"
                             >
                                 Ghost
                             </p>
@@ -186,7 +186,7 @@
 
                         <div class="space-y-3">
                             <p
-                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                                class="text-sm font-semibold text-slate-900"
                             >
                                 Danger
                             </p>
@@ -216,7 +216,7 @@
 
                         <div class="space-y-3">
                             <p
-                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                                class="text-sm font-semibold text-slate-900"
                             >
                                 Różne tagi
                             </p>
@@ -250,16 +250,16 @@
                 <Card aria-label="Card: Toasts">
                     <template #header>
                         <p
-                            class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            class="text-sm font-semibold text-slate-900"
                         >
                             Toasts
                         </p>
                     </template>
 
-                    <p class="text-sm text-slate-600 dark:text-slate-200">
+                    <p class="text-sm text-slate-600">
                         Toasts render in the top-right via
                         <code
-                            class="font-mono text-slate-900 dark:text-slate-50"
+                            class="font-mono text-slate-900"
                             >ToastStack</code
                         >.
                     </p>
@@ -298,21 +298,21 @@
                 <Card aria-label="Card: Dialog">
                     <template #header>
                         <p
-                            class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            class="text-sm font-semibold text-slate-900"
                         >
                             Dialog
                         </p>
                     </template>
 
-                    <p class="text-sm text-slate-600 dark:text-slate-200">
+                    <p class="text-sm text-slate-600">
                         Demo of
                         <code
-                            class="font-mono text-slate-900 dark:text-slate-50"
+                            class="font-mono text-slate-900"
                             >Dialog</code
                         >
                         (native
                         <code
-                            class="font-mono text-slate-900 dark:text-slate-50"
+                            class="font-mono text-slate-900"
                             >&lt;dialog&gt;</code
                         >
                         + Teleport).
@@ -331,7 +331,7 @@
                 <Card aria-label="Card: Cards">
                     <template #header>
                         <p
-                            class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            class="text-sm font-semibold text-slate-900"
                         >
                             Cards
                         </p>
@@ -340,12 +340,12 @@
                     <Card aria-label="Nested card preview">
                         <template #header>
                             <p
-                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                                class="text-sm font-semibold text-slate-900"
                             >
                                 Nested example
                             </p>
                         </template>
-                        <p class="text-sm text-slate-600 dark:text-slate-200">
+                        <p class="text-sm text-slate-600">
                             Cards are great for grouping content and actions.
                         </p>
                         <template #footer>

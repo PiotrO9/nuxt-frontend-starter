@@ -83,7 +83,7 @@ onMounted(() => {
         <dialog
             v-show="open"
             ref="dialogRef"
-            class="dialog-content fixed inset-0 m-auto max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] max-w-md rounded-xl border-0 bg-white p-0 shadow-2xl outline-none backdrop:bg-black/30 backdrop:backdrop-blur-sm dark:bg-gray-800"
+            class="dialog-content fixed inset-0 m-auto max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] max-w-md rounded-xl border-0 bg-white p-0 shadow-2xl outline-none backdrop:bg-black/30 backdrop:backdrop-blur-sm"
             :aria-labelledby="
                 hasHeaderSlot || title ? 'dialog-title' : undefined
             "
@@ -101,7 +101,7 @@ onMounted(() => {
                 <h2
                     v-else-if="title"
                     id="dialog-title"
-                    class="mb-3 text-xl font-semibold text-gray-900 dark:text-gray-100"
+                    class="mb-3 text-xl font-semibold text-gray-900"
                 >
                     {{ title }}
                 </h2>
@@ -113,7 +113,7 @@ onMounted(() => {
                 <p
                     v-else-if="message"
                     id="dialog-message"
-                    class="mb-6 text-gray-600 dark:text-gray-400"
+                    class="mb-6 text-gray-600"
                 >
                     {{ message }}
                 </p>
@@ -126,7 +126,7 @@ onMounted(() => {
                     <button
                         type="button"
                         tabindex="0"
-                        class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-150 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                        class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-150 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2 focus-visible:outline-none"
                         :aria-label="cancelText"
                         @click="handleCancel"
                         @keydown="(e) => e.key === 'Enter' && handleCancel()"
@@ -136,7 +136,7 @@ onMounted(() => {
                     <button
                         type="button"
                         tabindex="0"
-                        class="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:bg-red-700 dark:hover:bg-red-800"
+                        class="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:outline-none"
                         :aria-label="confirmText"
                         @click="handleConfirm"
                         @keydown="(e) => e.key === 'Enter' && handleConfirm()"

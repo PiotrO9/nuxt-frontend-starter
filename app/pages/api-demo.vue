@@ -42,7 +42,7 @@ function handleApiPost() {
     <div class="space-y-6">
         <div class="flex flex-col gap-2">
             <h1 class="text-2xl font-extrabold tracking-tight">API Demo</h1>
-            <p class="text-slate-700 dark:text-slate-200">
+            <p class="text-slate-700">
                 Przykłady użycia composable useApi do odpytywania API oraz
                 komponenty UI.
             </p>
@@ -51,7 +51,7 @@ function handleApiPost() {
         <Card aria-label="Card: API Examples">
             <template #header>
                 <p
-                    class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                    class="text-sm font-semibold text-slate-900"
                 >
                     API Examples (useApi)
                 </p>
@@ -59,7 +59,7 @@ function handleApiPost() {
 
             <div class="space-y-4">
                 <div class="space-y-2">
-                    <p class="text-sm text-slate-600 dark:text-slate-200">
+                    <p class="text-sm text-slate-600">
                         Przykłady użycia composable useApi. Pełne URL-e
                         (http/https) są używane bez zmian, relatywne ścieżki
                         używają base URL z .env (NUXT_PUBLIC_API_BASE).
@@ -93,15 +93,15 @@ function handleApiPost() {
 
                 <div
                     v-if="apiGet.data.value || apiGet.error.value"
-                    class="rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-900/50"
+                    class="rounded-lg border border-slate-200 bg-slate-50 p-4"
                 >
                     <p
-                        class="mb-2 text-xs font-semibold tracking-wide text-slate-500 uppercase dark:text-slate-400"
+                        class="mb-2 text-xs font-semibold tracking-wide text-slate-500 uppercase"
                     >
                         GET Response:
                     </p>
                     <pre
-                        class="overflow-auto text-xs text-slate-700 dark:text-slate-200"
+                        class="overflow-auto text-xs text-slate-700"
                         >{{
                             JSON.stringify(
                                 apiGet.data.value || apiGet.error.value,
@@ -114,15 +114,15 @@ function handleApiPost() {
 
                 <div
                     v-if="apiPost.data.value || apiPost.error.value"
-                    class="rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-900/50"
+                    class="rounded-lg border border-slate-200 bg-slate-50 p-4"
                 >
                     <p
-                        class="mb-2 text-xs font-semibold tracking-wide text-slate-500 uppercase dark:text-slate-400"
+                        class="mb-2 text-xs font-semibold tracking-wide text-slate-500 uppercase"
                     >
                         POST Response:
                     </p>
                     <pre
-                        class="overflow-auto text-xs text-slate-700 dark:text-slate-200"
+                        class="overflow-auto text-xs text-slate-700"
                         >{{
                             JSON.stringify(
                                 apiPost.data.value || apiPost.error.value,

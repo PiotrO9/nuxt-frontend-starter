@@ -48,14 +48,14 @@ const isDisabled = computed(() => props.isDisabled || props.isLoading);
 
 const buttonClass = computed(() => {
     const base =
-        'inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-60 dark:focus-visible:ring-offset-slate-950';
+        'inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-60';
 
     if (props.variant === 'secondary') {
-        return `${base} bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700`;
+        return `${base} bg-slate-100 text-slate-900 hover:bg-slate-200`;
     }
 
     if (props.variant === 'ghost') {
-        return `${base} bg-transparent text-slate-700 hover:bg-slate-100 dark:text-slate-100 dark:hover:bg-slate-800`;
+        return `${base} bg-transparent text-slate-700 hover:bg-slate-100`;
     }
 
     if (props.variant === 'danger') {

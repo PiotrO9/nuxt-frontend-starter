@@ -1,14 +1,14 @@
 <template>
-    <footer class="border-t border-slate-200 dark:border-slate-800">
+    <footer class="border-t border-slate-200">
         <div
-            class="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-6 text-sm text-slate-600 md:flex-row md:items-center md:justify-between dark:text-slate-300"
+            class="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-6 text-sm text-slate-600 md:flex-row md:items-center md:justify-between"
         >
-            <p class="font-medium text-slate-700 dark:text-slate-200">
+            <p class="font-medium text-slate-700">
                 Nuxt 4 + Tailwind starter — example structure and patterns
             </p>
-            <p class="text-slate-500 dark:text-slate-400">
+            <p class="text-slate-500">
                 Last updated:
-                <span class="text-slate-700 dark:text-slate-200">{{
+                <span class="text-slate-700">{{
                     formattedNow
                 }}</span>
             </p>

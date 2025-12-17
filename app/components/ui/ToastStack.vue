@@ -21,10 +21,10 @@ function getToastUi(variant: ToastVariant): ToastUi {
     if (variant === 'success') {
         return {
             containerClass:
-                'border-emerald-600/60 bg-emerald-50/90 text-slate-900 dark:bg-emerald-950/40 dark:text-slate-50',
+                'border-emerald-600/60 bg-emerald-50/90 text-slate-900',
             iconWrapperClass:
-                'bg-emerald-500/15 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300',
-            iconClass: 'text-emerald-700 dark:text-emerald-300',
+                'bg-emerald-500/15 text-emerald-700',
+            iconClass: 'text-emerald-700',
             closeRingClass: 'focus-visible:ring-emerald-400',
             a11y: { role: 'status', ariaLive: 'polite' },
         };
@@ -33,10 +33,10 @@ function getToastUi(variant: ToastVariant): ToastUi {
     if (variant === 'warning') {
         return {
             containerClass:
-                'border-amber-600/60 bg-amber-50/90 text-slate-900 dark:bg-amber-950/40 dark:text-slate-50',
+                'border-amber-600/60 bg-amber-50/90 text-slate-900',
             iconWrapperClass:
-                'bg-amber-500/15 text-amber-800 dark:bg-amber-500/15 dark:text-amber-300',
-            iconClass: 'text-amber-800 dark:text-amber-300',
+                'bg-amber-500/15 text-amber-800',
+            iconClass: 'text-amber-800',
             closeRingClass: 'focus-visible:ring-amber-400',
             a11y: { role: 'status', ariaLive: 'polite' },
         };
@@ -45,10 +45,10 @@ function getToastUi(variant: ToastVariant): ToastUi {
     if (variant === 'error') {
         return {
             containerClass:
-                'border-rose-600/60 bg-rose-50/90 text-slate-900 dark:bg-rose-950/40 dark:text-slate-50',
+                'border-rose-600/60 bg-rose-50/90 text-slate-900',
             iconWrapperClass:
-                'bg-rose-500/15 text-rose-800 dark:bg-rose-500/15 dark:text-rose-300',
-            iconClass: 'text-rose-800 dark:text-rose-300',
+                'bg-rose-500/15 text-rose-800',
+            iconClass: 'text-rose-800',
             closeRingClass: 'focus-visible:ring-rose-400',
             a11y: { role: 'alert', ariaLive: 'assertive' },
         };
@@ -56,10 +56,10 @@ function getToastUi(variant: ToastVariant): ToastUi {
 
     return {
         containerClass:
-            'border-sky-600/60 bg-white/90 text-slate-900 dark:bg-slate-950/90 dark:text-slate-50',
+            'border-sky-600/60 bg-white/90 text-slate-900',
         iconWrapperClass:
-            'bg-sky-500/15 text-sky-800 dark:bg-sky-500/15 dark:text-sky-300',
-        iconClass: 'text-sky-800 dark:text-sky-300',
+            'bg-sky-500/15 text-sky-800',
+        iconClass: 'text-sky-800',
         closeRingClass: 'focus-visible:ring-sky-400',
         a11y: { role: 'status', ariaLive: 'polite' },
     };
@@ -133,7 +133,7 @@ function handleCloseKeyDown(event: KeyboardEvent, toastId: string) {
                             </p>
                             <p
                                 v-if="toast.description"
-                                class="mt-1 text-sm text-slate-700 dark:text-slate-200"
+                                class="mt-1 text-sm text-slate-700"
                             >
                                 {{ toast.description }}
                             </p>
@@ -142,7 +142,7 @@ function handleCloseKeyDown(event: KeyboardEvent, toastId: string) {
 
                     <button
                         type="button"
-                        class="rounded-lg p-2 text-slate-700 transition hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-200 dark:hover:bg-white/10 dark:focus-visible:ring-offset-slate-950"
+                        class="rounded-lg p-2 text-slate-700 transition hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                         :class="getToastUi(toast.variant).closeRingClass"
                         aria-label="Zamknij powiadomienie"
                         @click="handleClose(toast.id)"
