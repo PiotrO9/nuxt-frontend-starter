@@ -48,21 +48,21 @@ const isDisabled = computed(() => props.isDisabled || props.isLoading);
 
 const buttonClass = computed(() => {
     const base =
-        'inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-60';
+        'inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950 disabled:cursor-not-allowed disabled:opacity-60';
 
     if (props.variant === 'secondary') {
-        return `${base} bg-slate-100 text-slate-900 hover:bg-slate-200`;
+        return `${base} bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-700`;
     }
 
     if (props.variant === 'ghost') {
-        return `${base} bg-transparent text-slate-700 hover:bg-slate-100`;
+        return `${base} bg-transparent text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800`;
     }
 
     if (props.variant === 'danger') {
-        return `${base} bg-rose-600 text-white hover:bg-rose-500`;
+        return `${base} bg-rose-600 text-white hover:bg-rose-500 dark:bg-rose-700 dark:hover:bg-rose-600`;
     }
 
-    return `${base} bg-sky-500 text-slate-950 hover:bg-sky-400`;
+    return `${base} bg-sky-500 text-slate-950 hover:bg-sky-400 dark:bg-sky-600 dark:text-white dark:hover:bg-sky-500`;
 });
 
 function handleClick(event: MouseEvent) {

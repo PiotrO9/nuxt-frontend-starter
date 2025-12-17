@@ -1,7 +1,7 @@
 ﻿<template>
     <div class="space-y-8">
         <section
-            class="rounded-3xl border border-slate-200 bg-linear-to-br from-white to-slate-50 p-8"
+            class="rounded-3xl border border-slate-200 bg-linear-to-br from-white to-slate-50 p-8 dark:border-slate-800 dark:from-slate-900 dark:to-slate-950"
         >
             <h1
                 class="text-3xl font-extrabold tracking-tight text-balance md:text-4xl"
@@ -9,7 +9,7 @@
                 Frontend Starter (Nuxt 4 + Vue 3 + TS + Tailwind)
             </h1>
             <p
-                class="mt-3 max-w-2xl text-pretty text-slate-700"
+                class="mt-3 max-w-2xl text-pretty text-slate-700 dark:text-slate-300"
             >
                 This is an example skeleton: layout, routing, "auth" middleware,
                 composables, and a few UI components. You can use it as a base
@@ -30,19 +30,19 @@
             <Card aria-label="Card: Auth middleware">
                 <template #header>
                     <p
-                        class="text-sm font-semibold text-slate-900"
+                        class="text-sm font-semibold text-slate-900 dark:text-slate-50"
                     >
                         "auth" middleware
                     </p>
                 </template>
-                <p class="text-sm text-slate-600">
+                <p class="text-sm text-slate-600 dark:text-slate-400">
                     Simple mechanism: cookie -&gt; if missing, redirect to
                     `/login` with a `redirect` query.
                 </p>
                 <template #footer>
                     <NuxtLink
                         to="/protected"
-                        class="inline-flex rounded-xl px-3 py-2 text-sm font-semibold text-sky-700 transition hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                        class="inline-flex rounded-xl px-3 py-2 text-sm font-semibold text-sky-700 transition hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-sky-400 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-950"
                         aria-label="Go to Protected page"
                     >
                         Check protected -&gt;
@@ -53,19 +53,19 @@
             <Card aria-label="Card: Composables">
                 <template #header>
                     <p
-                        class="text-sm font-semibold text-slate-900"
+                        class="text-sm font-semibold text-slate-900 dark:text-slate-50"
                     >
                         Composables
                     </p>
                 </template>
-                <p class="text-sm text-slate-600">
+                <p class="text-sm text-slate-600 dark:text-slate-400">
                     `useAuthSession`, `useToast` - simple, readable, and ready
                     to extend.
                 </p>
                 <template #footer>
                     <NuxtLink
                         to="/login"
-                        class="inline-flex rounded-xl px-3 py-2 text-sm font-semibold text-sky-700 transition hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                        class="inline-flex rounded-xl px-3 py-2 text-sm font-semibold text-sky-700 transition hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-sky-400 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-950"
                         aria-label="Go to Login page"
                     >
                         Open login -&gt;

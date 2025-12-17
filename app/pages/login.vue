@@ -2,7 +2,7 @@
     <div class="mx-auto w-full max-w-xl space-y-6">
         <div class="space-y-2">
             <h1 class="text-2xl font-extrabold tracking-tight">Login (demo)</h1>
-            <p class="text-slate-700">
+            <p class="text-slate-700 dark:text-slate-300">
                 This is intentionally simple: save to a cookie + redirect to the
                 protected page.
             </p>
@@ -11,17 +11,17 @@
         <Card aria-label="Card: Demo login">
             <template #header>
                 <p
-                    class="text-sm font-semibold text-slate-900"
+                    class="text-sm font-semibold text-slate-900 dark:text-slate-50"
                 >
                     Session
                 </p>
             </template>
 
             <div class="space-y-4">
-                <p class="text-sm text-slate-600">
+                <p class="text-sm text-slate-600 dark:text-slate-400">
                     Status:
                     <span
-                        class="font-semibold text-slate-900"
+                        class="font-semibold text-slate-900 dark:text-slate-50"
                     >
                         {{
                             isAuthenticated
@@ -33,7 +33,7 @@
 
                 <div class="space-y-2">
                     <label
-                        class="block text-sm font-medium text-slate-700"
+                        class="block text-sm font-medium text-slate-700 dark:text-slate-300"
                         for="userNameInput"
                         >Name</label
                     >
@@ -41,7 +41,7 @@
                         id="userNameInput"
                         v-model="userName"
                         type="text"
-                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2 text-slate-900 placeholder:text-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2 text-slate-900 placeholder:text-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-800 dark:text-slate-50 dark:placeholder:text-slate-500 dark:focus-visible:ring-offset-slate-950"
                         placeholder="e.g. Jane"
                         aria-label="Enter user name"
                         @keydown.enter="handleLogin"

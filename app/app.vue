@@ -8,7 +8,7 @@ useHead(() => ({
 
 <template>
     <div
-        class="min-h-dvh bg-white text-slate-950"
+        class="min-h-dvh bg-white text-slate-950 dark:bg-slate-950 dark:text-slate-50"
     >
         <NuxtRouteAnnouncer />
         <NuxtLayout>
