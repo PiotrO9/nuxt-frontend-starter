@@ -1,5 +1,5 @@
 ﻿<template>
-    <div class="space-y-10">
+    <div class="space-y-8">
         <section class="space-y-2">
             <h1 class="text-3xl font-extrabold tracking-tight">
                 Design system
@@ -45,7 +45,7 @@
                             :key="swatch.name"
                             type="button"
                             tabindex="0"
-                            class="group flex w-full items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white/70 p-3 text-left transition hover:border-slate-300 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-800 dark:bg-slate-800/70 dark:hover:border-slate-700 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-950"
+                            class="group flex w-full cursor-pointer items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white/70 p-3 text-left transition hover:border-slate-300 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-800 dark:bg-slate-800/70 dark:hover:border-slate-700 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-950"
                             :aria-label="`Copy ${group.name} ${swatch.name}: ${swatch.className}`"
                             @click="handleCopySwatch(group, swatch)"
                             @keydown="
@@ -72,13 +72,6 @@
                                     </p>
                                 </div>
                             </div>
-
-                            <span
-                                class="flex-none rounded-lg border border-slate-200 bg-white/70 px-2 py-1 text-xs font-semibold text-slate-600 opacity-100 transition group-hover:border-slate-300 group-hover:bg-white sm:opacity-0 sm:group-hover:opacity-100 dark:border-slate-700 dark:bg-slate-800/70 dark:text-slate-400 dark:group-hover:border-slate-600 dark:group-hover:bg-slate-800"
-                                aria-hidden="true"
-                            >
-                                Copy
-                            </span>
                         </button>
                     </div>
                 </Card>
@@ -113,7 +106,7 @@
                                     aria-label="Primary loading"
                                     :is-loading="true"
                                 >
-                                    Loading
+                                    Submit
                                 </Action>
                                 <Action
                                     aria-label="Primary disabled"
@@ -142,7 +135,7 @@
                                     variant="secondary"
                                     :is-loading="true"
                                 >
-                                    Loading
+                                    Save
                                 </Action>
                                 <Action
                                     aria-label="Secondary disabled"
@@ -158,58 +151,100 @@
                             <p
                                 class="text-sm font-semibold text-slate-900 dark:text-slate-50"
                             >
-                                Ghost
+                                Circle
                             </p>
-                            <div class="flex flex-wrap gap-3">
+                            <div class="flex flex-wrap items-center gap-3">
                                 <Action
-                                    aria-label="Ghost normal"
-                                    variant="ghost"
+                                    aria-label="Circle primary"
+                                    :circle="true"
                                 >
-                                    Normal
+                                    <svg
+                                        class="h-5 w-5"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M12 4v16m8-8H4"
+                                        />
+                                    </svg>
                                 </Action>
                                 <Action
-                                    aria-label="Ghost loading"
-                                    variant="ghost"
+                                    aria-label="Circle secondary"
+                                    variant="secondary"
+                                    :circle="true"
+                                >
+                                    <svg
+                                        class="h-5 w-5"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M12 4v16m8-8H4"
+                                        />
+                                    </svg>
+                                </Action>
+                                <Action
+                                    aria-label="Circle loading"
+                                    :circle="true"
                                     :is-loading="true"
                                 >
-                                    Loading
+                                    <svg
+                                        class="h-5 w-5"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M12 4v16m8-8H4"
+                                        />
+                                    </svg>
                                 </Action>
                                 <Action
-                                    aria-label="Ghost disabled"
-                                    variant="ghost"
+                                    aria-label="Circle disabled"
+                                    :circle="true"
                                     :is-disabled="true"
                                 >
-                                    Disabled
-                                </Action>
-                            </div>
-                        </div>
-
-                        <div class="space-y-3">
-                            <p
-                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
-                            >
-                                Danger
-                            </p>
-                            <div class="flex flex-wrap gap-3">
-                                <Action
-                                    aria-label="Danger normal"
-                                    variant="danger"
-                                >
-                                    Normal
+                                    <svg
+                                        class="h-5 w-5"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M12 4v16m8-8H4"
+                                        />
+                                    </svg>
                                 </Action>
                                 <Action
-                                    aria-label="Danger loading"
-                                    variant="danger"
-                                    :is-loading="true"
+                                    aria-label="Circle z tekstem"
+                                    :circle="true"
                                 >
-                                    Loading
+                                    A
                                 </Action>
                                 <Action
-                                    aria-label="Danger disabled"
-                                    variant="danger"
-                                    :is-disabled="true"
+                                    aria-label="Circle z emoji"
+                                    variant="secondary"
+                                    :circle="true"
                                 >
-                                    Disabled
+                                    ❤️
                                 </Action>
                             </div>
                         </div>
@@ -238,7 +273,7 @@
                                 <Action
                                     aria-label="Action jako div"
                                     tag="div"
-                                    variant="ghost"
+                                    variant="secondary"
                                 >
                                     Div
                                 </Action>
@@ -280,14 +315,14 @@
                         </Action>
                         <Action
                             aria-label="Show warning toast"
-                            variant="ghost"
+                            variant="secondary"
                             @click="handleToast('warning')"
                         >
                             Warning
                         </Action>
                         <Action
                             aria-label="Show error toast"
-                            variant="danger"
+                            variant="secondary"
                             @click="handleToast('error')"
                         >
                             Error

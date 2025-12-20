@@ -14,6 +14,7 @@ export default defineNuxtPlugin(() => {
             const prefersDark = window.matchMedia(
                 '(prefers-color-scheme: dark)',
             ).matches;
+
             if (prefersDark) {
                 html.classList.add('dark');
                 localStorage.setItem('dark-mode', 'true');
