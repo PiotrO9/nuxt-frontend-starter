@@ -1,4 +1,21 @@
-﻿<template>
+﻿<script setup lang="ts">
+useHead({
+    title: 'Home',
+});
+
+const { addToast } = useToast();
+
+function handleGoToProtected() {
+    addToast({
+        title: 'Navigation',
+        description: 'Going to protected...',
+        variant: 'info',
+    });
+    navigateTo('/protected');
+}
+</script>
+
+<template>
     <div class="space-y-8">
         <section
             class="rounded-3xl border border-slate-200 bg-linear-to-br from-white to-slate-50 p-8 dark:border-slate-800 dark:from-slate-900 dark:to-slate-950"
@@ -75,16 +92,3 @@
         </section>
     </div>
 </template>
-
-<script setup lang="ts">
-const { addToast } = useToast();
-
-function handleGoToProtected() {
-    addToast({
-        title: 'Navigation',
-        description: 'Going to protected...',
-        variant: 'info',
-    });
-    navigateTo('/protected');
-}
-</script>

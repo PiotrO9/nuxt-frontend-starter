@@ -24,5 +24,3 @@ useHead(() => ({
         <ToastStack />
     </div>
 </template>
-
-<style scoped></style>

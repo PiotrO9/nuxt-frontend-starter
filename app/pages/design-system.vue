@@ -1,423 +1,4 @@
-﻿<template>
-    <div class="space-y-8">
-        <section class="space-y-2">
-            <h1 class="text-3xl font-extrabold tracking-tight">
-                Design system
-            </h1>
-            <p class="max-w-3xl text-slate-700 dark:text-slate-300">
-                A single place to preview the Tailwind palette and the UI
-                building blocks used in this starter.
-            </p>
-        </section>
-
-        <section aria-label="Colors" class="space-y-4">
-            <div
-                class="flex flex-col gap-2 md:flex-row md:items-end md:justify-between"
-            >
-                <div class="space-y-1">
-                    <h2 class="text-xl font-bold tracking-tight">Colors</h2>
-                    <p class="text-sm text-slate-600 dark:text-slate-400">
-                        These are example tokens based on Tailwind utility
-                        classes.
-                    </p>
-                </div>
-            </div>
-
-            <div class="grid gap-4 md:grid-cols-2">
-                <Card
-                    v-for="group in colorGroups"
-                    :key="group.name"
-                    :aria-label="`Color group: ${group.name}`"
-                >
-                    <template #header>
-                        <div class="flex items-center justify-between gap-3">
-                            <p
-                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
-                            >
-                                {{ group.name }}
-                            </p>
-                        </div>
-                    </template>
-
-                    <div class="grid gap-3 sm:grid-cols-2">
-                        <button
-                            v-for="swatch in group.swatches"
-                            :key="swatch.name"
-                            type="button"
-                            tabindex="0"
-                            class="group flex w-full cursor-pointer items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white/70 p-3 text-left transition hover:border-slate-300 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-800 dark:bg-slate-800/70 dark:hover:border-slate-700 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-950"
-                            :aria-label="`Copy ${group.name} ${swatch.name}: ${swatch.className}`"
-                            @click="handleCopySwatch(group, swatch)"
-                            @keydown="
-                                handleKeyDownCopySwatch($event, group, swatch)
-                            "
-                        >
-                            <div class="flex min-w-0 items-center gap-3">
-                                <div
-                                    class="h-10 w-10 flex-none rounded-xl border border-slate-200 dark:border-slate-700"
-                                    :class="swatch.previewClass"
-                                    :aria-label="`Color preview ${swatch.name}`"
-                                    role="img"
-                                />
-                                <div class="min-w-0">
-                                    <p
-                                        class="truncate text-sm font-semibold text-slate-900 dark:text-slate-50"
-                                    >
-                                        {{ swatch.name }}
-                                    </p>
-                                    <p
-                                        class="truncate font-mono text-xs text-slate-600 dark:text-slate-400"
-                                    >
-                                        {{ swatch.className }}
-                                    </p>
-                                </div>
-                            </div>
-                        </button>
-                    </div>
-                </Card>
-            </div>
-        </section>
-
-        <section aria-label="Components" class="space-y-4">
-            <h2 class="text-xl font-bold tracking-tight">Components</h2>
-
-            <div class="grid gap-4 lg:grid-cols-2">
-                <Card aria-label="Card: Actions">
-                    <template #header>
-                        <p
-                            class="text-sm font-semibold text-slate-900 dark:text-slate-50"
-                        >
-                            Actions
-                        </p>
-                    </template>
-
-                    <div class="space-y-6">
-                        <div class="space-y-3">
-                            <p
-                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
-                            >
-                                Primary
-                            </p>
-                            <div class="flex flex-wrap gap-3">
-                                <Action aria-label="Primary normal"
-                                    >Normal</Action
-                                >
-                                <Action
-                                    aria-label="Primary loading"
-                                    :is-loading="true"
-                                >
-                                    Submit
-                                </Action>
-                                <Action
-                                    aria-label="Primary disabled"
-                                    :is-disabled="true"
-                                >
-                                    Disabled
-                                </Action>
-                            </div>
-                        </div>
-
-                        <div class="space-y-3">
-                            <p
-                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
-                            >
-                                Secondary
-                            </p>
-                            <div class="flex flex-wrap gap-3">
-                                <Action
-                                    aria-label="Secondary normal"
-                                    variant="secondary"
-                                >
-                                    Normal
-                                </Action>
-                                <Action
-                                    aria-label="Secondary loading"
-                                    variant="secondary"
-                                    :is-loading="true"
-                                >
-                                    Save
-                                </Action>
-                                <Action
-                                    aria-label="Secondary disabled"
-                                    variant="secondary"
-                                    :is-disabled="true"
-                                >
-                                    Disabled
-                                </Action>
-                            </div>
-                        </div>
-
-                        <div class="space-y-3">
-                            <p
-                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
-                            >
-                                Circle
-                            </p>
-                            <div class="flex flex-wrap items-center gap-3">
-                                <Action
-                                    aria-label="Circle primary"
-                                    :circle="true"
-                                >
-                                    <svg
-                                        class="h-5 w-5"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                        aria-hidden="true"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M12 4v16m8-8H4"
-                                        />
-                                    </svg>
-                                </Action>
-                                <Action
-                                    aria-label="Circle secondary"
-                                    variant="secondary"
-                                    :circle="true"
-                                >
-                                    <svg
-                                        class="h-5 w-5"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                        aria-hidden="true"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M12 4v16m8-8H4"
-                                        />
-                                    </svg>
-                                </Action>
-                                <Action
-                                    aria-label="Circle loading"
-                                    :circle="true"
-                                    :is-loading="true"
-                                >
-                                    <svg
-                                        class="h-5 w-5"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                        aria-hidden="true"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M12 4v16m8-8H4"
-                                        />
-                                    </svg>
-                                </Action>
-                                <Action
-                                    aria-label="Circle disabled"
-                                    :circle="true"
-                                    :is-disabled="true"
-                                >
-                                    <svg
-                                        class="h-5 w-5"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                        aria-hidden="true"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M12 4v16m8-8H4"
-                                        />
-                                    </svg>
-                                </Action>
-                                <Action
-                                    aria-label="Circle z tekstem"
-                                    :circle="true"
-                                >
-                                    A
-                                </Action>
-                                <Action
-                                    aria-label="Circle z emoji"
-                                    variant="secondary"
-                                    :circle="true"
-                                >
-                                    ❤️
-                                </Action>
-                            </div>
-                        </div>
-
-                        <div class="space-y-3">
-                            <p
-                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
-                            >
-                                Różne tagi
-                            </p>
-                            <div class="flex flex-wrap gap-3">
-                                <Action
-                                    aria-label="Action jako button"
-                                    tag="button"
-                                >
-                                    Button
-                                </Action>
-                                <Action
-                                    aria-label="Action jako link"
-                                    tag="a"
-                                    href="#"
-                                    variant="secondary"
-                                >
-                                    Link
-                                </Action>
-                                <Action
-                                    aria-label="Action jako div"
-                                    tag="div"
-                                    variant="secondary"
-                                >
-                                    Div
-                                </Action>
-                            </div>
-                        </div>
-                    </div>
-                </Card>
-
-                <Card aria-label="Card: Toasts">
-                    <template #header>
-                        <p
-                            class="text-sm font-semibold text-slate-900 dark:text-slate-50"
-                        >
-                            Toasts
-                        </p>
-                    </template>
-
-                    <p class="text-sm text-slate-600 dark:text-slate-400">
-                        Toasts render in the top-right via
-                        <code
-                            class="font-mono text-slate-900 dark:text-slate-50"
-                            >ToastStack</code
-                        >.
-                    </p>
-
-                    <div class="mt-4 flex flex-wrap gap-2">
-                        <Action
-                            aria-label="Show success toast"
-                            @click="handleToast('success')"
-                        >
-                            Success
-                        </Action>
-                        <Action
-                            aria-label="Show info toast"
-                            variant="secondary"
-                            @click="handleToast('info')"
-                        >
-                            Info
-                        </Action>
-                        <Action
-                            aria-label="Show warning toast"
-                            variant="secondary"
-                            @click="handleToast('warning')"
-                        >
-                            Warning
-                        </Action>
-                        <Action
-                            aria-label="Show error toast"
-                            variant="secondary"
-                            @click="handleToast('error')"
-                        >
-                            Error
-                        </Action>
-                    </div>
-                </Card>
-
-                <Card aria-label="Card: Dialog">
-                    <template #header>
-                        <p
-                            class="text-sm font-semibold text-slate-900 dark:text-slate-50"
-                        >
-                            Dialog
-                        </p>
-                    </template>
-
-                    <p class="text-sm text-slate-600 dark:text-slate-400">
-                        Demo of
-                        <code
-                            class="font-mono text-slate-900 dark:text-slate-50"
-                            >Dialog</code
-                        >
-                        (native
-                        <code
-                            class="font-mono text-slate-900 dark:text-slate-50"
-                            >&lt;dialog&gt;</code
-                        >
-                        + Teleport).
-                    </p>
-
-                    <div class="mt-4 flex flex-wrap gap-2">
-                        <Action
-                            aria-label="Open dialog"
-                            @click="handleOpenDialog"
-                        >
-                            Open dialog
-                        </Action>
-                    </div>
-                </Card>
-
-                <Card aria-label="Card: Cards">
-                    <template #header>
-                        <p
-                            class="text-sm font-semibold text-slate-900 dark:text-slate-50"
-                        >
-                            Cards
-                        </p>
-                    </template>
-
-                    <Card aria-label="Nested card preview">
-                        <template #header>
-                            <p
-                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
-                            >
-                                Nested example
-                            </p>
-                        </template>
-                        <p class="text-sm text-slate-600 dark:text-slate-400">
-                            Cards are great for grouping content and actions.
-                        </p>
-                        <template #footer>
-                            <div class="flex flex-wrap gap-2">
-                                <Action
-                                    aria-label="Card primary action"
-                                    @click="handleToast('info')"
-                                >
-                                    Action
-                                </Action>
-                                <Action
-                                    aria-label="Card secondary action"
-                                    variant="secondary"
-                                    @click="handleToast('success')"
-                                >
-                                    Secondary
-                                </Action>
-                            </div>
-                        </template>
-                    </Card>
-                </Card>
-            </div>
-        </section>
-
-        <Dialog
-            v-model:open="isDialogOpen"
-            cancel-text="Cancel"
-            confirm-text="Confirm"
-            message="This is a demo dialog. Press Escape or click outside to close."
-            title="Confirm action"
-            @cancel="handleDialogCancel"
-            @confirm="handleDialogConfirm"
-        />
-    </div>
-</template>
-
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import type { ToastVariant } from '~/composables/useToast';
 import { isEnterOrSpaceKey } from '~/utils/keyboard';
 
@@ -669,3 +250,386 @@ function handleDialogCancel() {
     });
 }
 </script>
+
+<template>
+    <div class="space-y-8">
+        <section class="space-y-2">
+            <h1 class="text-3xl font-extrabold tracking-tight">
+                Design system
+            </h1>
+            <p class="max-w-3xl text-slate-700 dark:text-slate-300">
+                A single place to preview the Tailwind palette and the UI
+                building blocks used in this starter.
+            </p>
+        </section>
+
+        <section aria-label="Colors" class="space-y-4">
+            <div
+                class="flex flex-col gap-2 md:flex-row md:items-end md:justify-between"
+            >
+                <div class="space-y-1">
+                    <h2 class="text-xl font-bold tracking-tight">Colors</h2>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">
+                        These are example tokens based on Tailwind utility
+                        classes.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid gap-4 md:grid-cols-2">
+                <Card
+                    v-for="group in colorGroups"
+                    :key="group.name"
+                    :aria-label="`Color group: ${group.name}`"
+                >
+                    <template #header>
+                        <div class="flex items-center justify-between gap-3">
+                            <p
+                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            >
+                                {{ group.name }}
+                            </p>
+                        </div>
+                    </template>
+
+                    <div class="grid gap-3 sm:grid-cols-2">
+                        <button
+                            v-for="swatch in group.swatches"
+                            :key="swatch.name"
+                            type="button"
+                            tabindex="0"
+                            class="group flex w-full cursor-pointer items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white/70 p-3 text-left transition hover:border-slate-300 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-800 dark:bg-slate-800/70 dark:hover:border-slate-700 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-950"
+                            :aria-label="`Copy ${group.name} ${swatch.name}: ${swatch.className}`"
+                            @click="handleCopySwatch(group, swatch)"
+                            @keydown="
+                                handleKeyDownCopySwatch($event, group, swatch)
+                            "
+                        >
+                            <div class="flex min-w-0 items-center gap-3">
+                                <div
+                                    class="h-10 w-10 flex-none rounded-xl border border-slate-200 dark:border-slate-700"
+                                    :class="swatch.previewClass"
+                                    :aria-label="`Color preview ${swatch.name}`"
+                                    role="img"
+                                />
+                                <div class="min-w-0">
+                                    <p
+                                        class="truncate text-sm font-semibold text-slate-900 dark:text-slate-50"
+                                    >
+                                        {{ swatch.name }}
+                                    </p>
+                                    <p
+                                        class="truncate font-mono text-xs text-slate-600 dark:text-slate-400"
+                                    >
+                                        {{ swatch.className }}
+                                    </p>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                </Card>
+            </div>
+        </section>
+
+        <section aria-label="Components" class="space-y-4">
+            <h2 class="text-xl font-bold tracking-tight">Components</h2>
+
+            <div class="grid gap-4 lg:grid-cols-2">
+                <Card aria-label="Card: Actions">
+                    <template #header>
+                        <p
+                            class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                        >
+                            Actions
+                        </p>
+                    </template>
+
+                    <div class="space-y-6">
+                        <div class="space-y-3">
+                            <p
+                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            >
+                                Primary
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <Action aria-label="Primary normal"
+                                    >Normal</Action
+                                >
+                                <Action
+                                    aria-label="Primary loading"
+                                    :is-loading="true"
+                                >
+                                    Submit
+                                </Action>
+                                <Action
+                                    aria-label="Primary disabled"
+                                    :is-disabled="true"
+                                >
+                                    Disabled
+                                </Action>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <p
+                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            >
+                                Secondary
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <Action
+                                    aria-label="Secondary normal"
+                                    variant="secondary"
+                                >
+                                    Normal
+                                </Action>
+                                <Action
+                                    aria-label="Secondary loading"
+                                    variant="secondary"
+                                    :is-loading="true"
+                                >
+                                    Save
+                                </Action>
+                                <Action
+                                    aria-label="Secondary disabled"
+                                    variant="secondary"
+                                    :is-disabled="true"
+                                >
+                                    Disabled
+                                </Action>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <p
+                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            >
+                                Circle
+                            </p>
+                            <div class="flex flex-wrap items-center gap-3">
+                                <Action
+                                    aria-label="Circle primary"
+                                    :circle="true"
+                                >
+                                    <Icon
+                                        name="heroicons:plus"
+                                        class="h-5 w-5"
+                                        aria-hidden="true"
+                                    />
+                                </Action>
+                                <Action
+                                    aria-label="Circle secondary"
+                                    variant="secondary"
+                                    :circle="true"
+                                >
+                                    <Icon
+                                        name="heroicons:plus"
+                                        class="h-5 w-5"
+                                        aria-hidden="true"
+                                    />
+                                </Action>
+                                <Action
+                                    aria-label="Circle loading"
+                                    :circle="true"
+                                    :is-loading="true"
+                                >
+                                    <Icon
+                                        name="heroicons:plus"
+                                        class="h-5 w-5"
+                                        aria-hidden="true"
+                                    />
+                                </Action>
+                                <Action
+                                    aria-label="Circle disabled"
+                                    :circle="true"
+                                    :is-disabled="true"
+                                >
+                                    <Icon
+                                        name="heroicons:plus"
+                                        class="h-5 w-5"
+                                        aria-hidden="true"
+                                    />
+                                </Action>
+                                <Action
+                                    aria-label="Circle z tekstem"
+                                    :circle="true"
+                                >
+                                    A
+                                </Action>
+                                <Action
+                                    aria-label="Circle z emoji"
+                                    variant="secondary"
+                                    :circle="true"
+                                >
+                                    ❤️
+                                </Action>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <p
+                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            >
+                                Różne tagi
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <Action
+                                    aria-label="Action jako button"
+                                    tag="button"
+                                >
+                                    Button
+                                </Action>
+                                <Action
+                                    aria-label="Action jako link"
+                                    tag="a"
+                                    href="#"
+                                    variant="secondary"
+                                >
+                                    Link
+                                </Action>
+                                <Action
+                                    aria-label="Action jako div"
+                                    tag="div"
+                                    variant="secondary"
+                                >
+                                    Div
+                                </Action>
+                            </div>
+                        </div>
+                    </div>
+                </Card>
+
+                <Card aria-label="Card: Toasts">
+                    <template #header>
+                        <p
+                            class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                        >
+                            Toasts
+                        </p>
+                    </template>
+
+                    <p class="text-sm text-slate-600 dark:text-slate-400">
+                        Toasts render in the top-right via
+                        <code
+                            class="font-mono text-slate-900 dark:text-slate-50"
+                            >ToastStack</code
+                        >.
+                    </p>
+
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <Action
+                            aria-label="Show success toast"
+                            @click="handleToast('success')"
+                        >
+                            Success
+                        </Action>
+                        <Action
+                            aria-label="Show info toast"
+                            variant="secondary"
+                            @click="handleToast('info')"
+                        >
+                            Info
+                        </Action>
+                        <Action
+                            aria-label="Show warning toast"
+                            variant="secondary"
+                            @click="handleToast('warning')"
+                        >
+                            Warning
+                        </Action>
+                        <Action
+                            aria-label="Show error toast"
+                            variant="secondary"
+                            @click="handleToast('error')"
+                        >
+                            Error
+                        </Action>
+                    </div>
+                </Card>
+
+                <Card aria-label="Card: Dialog">
+                    <template #header>
+                        <p
+                            class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                        >
+                            Dialog
+                        </p>
+                    </template>
+
+                    <p class="text-sm text-slate-600 dark:text-slate-400">
+                        Demo of
+                        <code
+                            class="font-mono text-slate-900 dark:text-slate-50"
+                            >Dialog</code
+                        >
+                        (native
+                        <code
+                            class="font-mono text-slate-900 dark:text-slate-50"
+                            >&lt;dialog&gt;</code
+                        >
+                        + Teleport).
+                    </p>
+
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <Action
+                            aria-label="Open dialog"
+                            @click="handleOpenDialog"
+                        >
+                            Open dialog
+                        </Action>
+                    </div>
+                </Card>
+
+                <Card aria-label="Card: Cards">
+                    <template #header>
+                        <p
+                            class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                        >
+                            Cards
+                        </p>
+                    </template>
+
+                    <Card aria-label="Nested card preview">
+                        <template #header>
+                            <p
+                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            >
+                                Nested example
+                            </p>
+                        </template>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">
+                            Cards are great for grouping content and actions.
+                        </p>
+                        <template #footer>
+                            <div class="flex flex-wrap gap-2">
+                                <Action
+                                    aria-label="Card primary action"
+                                    @click="handleToast('info')"
+                                >
+                                    Action
+                                </Action>
+                                <Action
+                                    aria-label="Card secondary action"
+                                    variant="secondary"
+                                    @click="handleToast('success')"
+                                >
+                                    Secondary
+                                </Action>
+                            </div>
+                        </template>
+                    </Card>
+                </Card>
+            </div>
+        </section>
+
+        <Dialog
+            v-model:open="isDialogOpen"
+            cancel-text="Cancel"
+            confirm-text="Confirm"
+            message="This is a demo dialog. Press Escape or click outside to close."
+            title="Confirm action"
+            @cancel="handleDialogCancel"
+            @confirm="handleDialogConfirm"
+        />
+    </div>
+</template>

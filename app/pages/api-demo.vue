@@ -1,4 +1,8 @@
 ﻿<script setup lang="ts">
+useHead({
+    title: 'API Demo',
+});
+
 const apiGet = useApi<{
     id: number;
     title: string;

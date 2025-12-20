@@ -13,6 +13,7 @@ type ToastUi = {
     containerClass: string;
     iconWrapperClass: string;
     iconClass: string;
+    closeButtonClass: string;
     closeRingClass: string;
     a11y: ToastA11y;
 };
@@ -25,7 +26,10 @@ function getToastUi(variant: ToastVariant): ToastUi {
             iconWrapperClass:
                 'bg-emerald-500/15 text-emerald-700 dark:bg-emerald-500/30 dark:text-emerald-300',
             iconClass: 'text-emerald-700 dark:text-emerald-300',
-            closeRingClass: 'focus-visible:ring-emerald-400',
+            closeButtonClass:
+                'text-emerald-700/70 hover:text-emerald-800 hover:bg-emerald-100/50 active:bg-emerald-200/50 dark:text-emerald-300/70 dark:hover:text-emerald-200 dark:hover:bg-emerald-900/30 dark:active:bg-emerald-800/40',
+            closeRingClass:
+                'focus-visible:ring-emerald-400 focus-visible:ring-offset-2',
             a11y: { role: 'status', ariaLive: 'polite' },
         };
     }
@@ -37,7 +41,10 @@ function getToastUi(variant: ToastVariant): ToastUi {
             iconWrapperClass:
                 'bg-amber-500/15 text-amber-800 dark:bg-amber-500/30 dark:text-amber-300',
             iconClass: 'text-amber-800 dark:text-amber-300',
-            closeRingClass: 'focus-visible:ring-amber-400',
+            closeButtonClass:
+                'text-amber-800/70 hover:text-amber-900 hover:bg-amber-100/50 active:bg-amber-200/50 dark:text-amber-300/70 dark:hover:text-amber-200 dark:hover:bg-amber-900/30 dark:active:bg-amber-800/40',
+            closeRingClass:
+                'focus-visible:ring-amber-400 focus-visible:ring-offset-2',
             a11y: { role: 'status', ariaLive: 'polite' },
         };
     }
@@ -49,7 +56,10 @@ function getToastUi(variant: ToastVariant): ToastUi {
             iconWrapperClass:
                 'bg-rose-500/15 text-rose-800 dark:bg-rose-500/30 dark:text-rose-300',
             iconClass: 'text-rose-800 dark:text-rose-300',
-            closeRingClass: 'focus-visible:ring-rose-400',
+            closeButtonClass:
+                'text-rose-800/70 hover:text-rose-900 hover:bg-rose-100/50 active:bg-rose-200/50 dark:text-rose-300/70 dark:hover:text-rose-200 dark:hover:bg-rose-900/30 dark:active:bg-rose-800/40',
+            closeRingClass:
+                'focus-visible:ring-rose-400 focus-visible:ring-offset-2',
             a11y: { role: 'alert', ariaLive: 'assertive' },
         };
     }
@@ -60,17 +70,20 @@ function getToastUi(variant: ToastVariant): ToastUi {
         iconWrapperClass:
             'bg-sky-500/15 text-sky-800 dark:bg-sky-500/30 dark:text-sky-300',
         iconClass: 'text-sky-800 dark:text-sky-300',
-        closeRingClass: 'focus-visible:ring-sky-400',
+        closeButtonClass:
+            'text-slate-700/70 hover:text-slate-900 hover:bg-slate-100/50 active:bg-slate-200/50 dark:text-slate-300/70 dark:hover:text-slate-200 dark:hover:bg-slate-800/50 dark:active:bg-slate-700/60',
+        closeRingClass:
+            'focus-visible:ring-sky-400 focus-visible:ring-offset-2',
         a11y: { role: 'status', ariaLive: 'polite' },
     };
 }
 
 function getToastIcon(variant: ToastVariant): string {
-    if (variant === 'success') return '✓';
-    if (variant === 'warning') return '!';
-    if (variant === 'error') return '×';
+    if (variant === 'success') return 'heroicons:check-circle';
+    if (variant === 'warning') return 'heroicons:exclamation-triangle';
+    if (variant === 'error') return 'heroicons:x-circle';
 
-    return 'i';
+    return 'heroicons:information-circle';
 }
 
 function handleClose(toastId: string) {
@@ -118,13 +131,18 @@ function handleCloseKeyDown(event: KeyboardEvent, toastId: string) {
                 <div class="flex items-start justify-between gap-3">
                     <div class="flex min-w-0 items-start gap-3">
                         <div
-                            class="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-sm font-bold"
+                            class="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl"
                             :class="getToastUi(toast.variant).iconWrapperClass"
                             aria-hidden="true"
                         >
-                            <span class="leading-none" aria-hidden="true">
-                                {{ getToastIcon(toast.variant) }}
-                            </span>
+                            <Icon
+                                :name="getToastIcon(toast.variant)"
+                                :class="[
+                                    'h-5 w-5',
+                                    getToastUi(toast.variant).iconClass,
+                                ]"
+                                aria-hidden="true"
+                            />
                         </div>
 
                         <div class="min-w-0">
@@ -142,15 +160,21 @@ function handleCloseKeyDown(event: KeyboardEvent, toastId: string) {
 
                     <button
                         type="button"
-                        class="rounded-lg p-2 text-slate-700 transition hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-300 dark:hover:bg-white/10 dark:focus-visible:ring-offset-slate-900"
-                        :class="getToastUi(toast.variant).closeRingClass"
+                        tabindex="0"
+                        class="group relative inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 motion-reduce:transition-none"
+                        :class="[
+                            getToastUi(toast.variant).closeButtonClass,
+                            getToastUi(toast.variant).closeRingClass,
+                        ]"
                         aria-label="Zamknij powiadomienie"
                         @click="handleClose(toast.id)"
                         @keydown="handleCloseKeyDown($event, toast.id)"
                     >
-                        <span aria-hidden="true" class="text-lg leading-none"
-                            >×</span
-                        >
+                        <Icon
+                            name="heroicons:x-mark"
+                            class="h-4 w-4 transition-transform duration-200 group-hover:scale-110 group-active:scale-95 motion-reduce:transition-none"
+                            aria-hidden="true"
+                        />
                     </button>
                 </div>
             </div>

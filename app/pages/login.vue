@@ -1,4 +1,64 @@
-﻿<template>
+﻿<script setup lang="ts">
+useHead({
+    title: 'Login',
+});
+
+const route = useRoute();
+const { addToast } = useToast();
+const { isAuthenticated, session, loginDemo, logout } = useAuthSession();
+
+const userName = ref('Jan');
+const userNameTrimmed = computed(() => userName.value.trim());
+
+function resolveRedirectTarget(): string {
+    const redirectQuery = route.query.redirect;
+
+    if (!redirectQuery) return '/protected';
+    if (Array.isArray(redirectQuery)) return redirectQuery[0] || '/protected';
+
+    return redirectQuery;
+}
+
+function handleLogin() {
+    if (isAuthenticated.value) {
+        addToast({
+            title: 'Already signed in',
+            description: 'You can continue.',
+            variant: 'info',
+        });
+        navigateTo(resolveRedirectTarget());
+
+        return;
+    }
+
+    if (!userNameTrimmed.value) return;
+
+    loginDemo(userNameTrimmed.value);
+    addToast({
+        title: 'Signed in',
+        description: `Hi, ${userNameTrimmed.value}!`,
+        variant: 'success',
+    });
+    navigateTo(resolveRedirectTarget());
+}
+
+function handleLogout() {
+    const name = session.value?.userName || 'User';
+
+    logout();
+    addToast({
+        title: 'Logged out',
+        description: `See you, ${name}!`,
+        variant: 'success',
+    });
+}
+
+function handleGoHome() {
+    navigateTo('/');
+}
+</script>
+
+<template>
     <div class="mx-auto w-full max-w-xl space-y-6">
         <div class="space-y-2">
             <h1 class="text-2xl font-extrabold tracking-tight">Login (demo)</h1>
@@ -78,59 +138,3 @@
         </Card>
     </div>
 </template>
-
-<script setup lang="ts">
-const route = useRoute();
-const { addToast } = useToast();
-const { isAuthenticated, session, loginDemo, logout } = useAuthSession();
-
-const userName = ref('Jan');
-const userNameTrimmed = computed(() => userName.value.trim());
-
-function resolveRedirectTarget(): string {
-    const redirectQuery = route.query.redirect;
-
-    if (!redirectQuery) return '/protected';
-    if (Array.isArray(redirectQuery)) return redirectQuery[0] || '/protected';
-
-    return redirectQuery;
-}
-
-function handleLogin() {
-    if (isAuthenticated.value) {
-        addToast({
-            title: 'Already signed in',
-            description: 'You can continue.',
-            variant: 'info',
-        });
-        navigateTo(resolveRedirectTarget());
-
-        return;
-    }
-
-    if (!userNameTrimmed.value) return;
-
-    loginDemo(userNameTrimmed.value);
-    addToast({
-        title: 'Signed in',
-        description: `Hi, ${userNameTrimmed.value}!`,
-        variant: 'success',
-    });
-    navigateTo(resolveRedirectTarget());
-}
-
-function handleLogout() {
-    const name = session.value?.userName || 'User';
-
-    logout();
-    addToast({
-        title: 'Logged out',
-        description: `See you, ${name}!`,
-        variant: 'success',
-    });
-}
-
-function handleGoHome() {
-    navigateTo('/');
-}
-</script>
