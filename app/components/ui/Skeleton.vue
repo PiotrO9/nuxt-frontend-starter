@@ -1,0 +1,67 @@
+<template>
+    <div
+        :aria-label="ariaLabel"
+        :class="skeletonClass"
+        :style="skeletonStyle"
+        role="status"
+        aria-live="polite"
+    >
+        <span class="sr-only">{{ ariaLabel }}</span>
+    </div>
+</template>
+
+<script setup lang="ts">
+type Props = {
+    ariaLabel?: string;
+    width?: string;
+    height?: string;
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full';
+    variant?: 'default' | 'pulse' | 'wave';
+};
+
+const props = withDefaults(defineProps<Props>(), {
+    ariaLabel: 'Ładowanie...',
+    width: '100%',
+    height: '1rem',
+    rounded: 'md',
+    variant: 'pulse',
+});
+
+const skeletonClass = computed(() => {
+    const base = 'bg-slate-200 dark:bg-slate-800';
+
+    const roundedClasses = {
+        none: 'rounded-none',
+        sm: 'rounded-sm',
+        md: 'rounded-md',
+        lg: 'rounded-lg',
+        full: 'rounded-full',
+    };
+
+    const variantClasses = {
+        default: '',
+        pulse: 'animate-pulse',
+        wave: 'animate-pulse bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200 dark:from-slate-800 dark:via-slate-700 dark:to-slate-800 bg-[length:200%_100%] animate-[wave_2s_ease-in-out_infinite]',
+    };
+
+    return `${base} ${roundedClasses[props.rounded]} ${variantClasses[props.variant]}`;
+});
+
+const skeletonStyle = computed(() => {
+    return {
+        width: props.width,
+        height: props.height,
+    };
+});
+</script>
+
+<style scoped>
+@keyframes wave {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+</style>

@@ -619,6 +619,368 @@ function handleDialogCancel() {
                         </template>
                     </Card>
                 </Card>
+
+                <Card aria-label="Card: Badge">
+                    <template #header>
+                        <p
+                            class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                        >
+                            Badge
+                        </p>
+                    </template>
+
+                    <div class="space-y-6">
+                        <div class="space-y-3">
+                            <p
+                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            >
+                                Warianty
+                            </p>
+                            <div class="flex flex-wrap items-center gap-3">
+                                <Badge variant="primary">Primary</Badge>
+                                <Badge variant="secondary">Secondary</Badge>
+                                <Badge variant="success">Success</Badge>
+                                <Badge variant="warning">Warning</Badge>
+                                <Badge variant="danger">Danger</Badge>
+                                <Badge variant="info">Info</Badge>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <p
+                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            >
+                                Rozmiary
+                            </p>
+                            <div class="flex flex-wrap items-center gap-3">
+                                <Badge size="sm" variant="primary">Mały</Badge>
+                                <Badge size="md" variant="primary"
+                                    >Średni</Badge
+                                >
+                                <Badge size="lg" variant="primary">Duży</Badge>
+                            </div>
+                        </div>
+                    </div>
+                </Card>
+
+                <Card aria-label="Card: Skeleton">
+                    <template #header>
+                        <p
+                            class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                        >
+                            Skeleton
+                        </p>
+                    </template>
+
+                    <div class="space-y-6">
+                        <div class="space-y-3">
+                            <p
+                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            >
+                                Warianty
+                            </p>
+                            <div class="space-y-2">
+                                <Skeleton variant="pulse" />
+                                <Skeleton variant="wave" />
+                                <Skeleton variant="default" />
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <p
+                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            >
+                                Różne kształty
+                            </p>
+                            <div class="space-y-2">
+                                <Skeleton
+                                    rounded="none"
+                                    width="100%"
+                                    height="1rem"
+                                />
+                                <Skeleton
+                                    rounded="sm"
+                                    width="80%"
+                                    height="1rem"
+                                />
+                                <Skeleton
+                                    rounded="md"
+                                    width="60%"
+                                    height="1rem"
+                                />
+                                <Skeleton
+                                    rounded="lg"
+                                    width="40%"
+                                    height="1rem"
+                                />
+                                <Skeleton
+                                    rounded="full"
+                                    width="2rem"
+                                    height="2rem"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <p
+                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            >
+                                Przykład karty
+                            </p>
+                            <div
+                                class="space-y-3 rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900"
+                            >
+                                <div class="flex items-center gap-3">
+                                    <Skeleton
+                                        rounded="full"
+                                        width="3rem"
+                                        height="3rem"
+                                    />
+                                    <div class="flex-1 space-y-2">
+                                        <Skeleton width="60%" height="1rem" />
+                                        <Skeleton
+                                            width="40%"
+                                            height="0.875rem"
+                                        />
+                                    </div>
+                                </div>
+                                <Skeleton width="100%" height="1rem" />
+                                <Skeleton width="90%" height="1rem" />
+                            </div>
+                        </div>
+                    </div>
+                </Card>
+
+                <Card aria-label="Card: Spinner">
+                    <template #header>
+                        <p
+                            class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                        >
+                            Spinner
+                        </p>
+                    </template>
+
+                    <div class="space-y-6">
+                        <div class="space-y-3">
+                            <p
+                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            >
+                                Rozmiary
+                            </p>
+                            <div class="flex flex-wrap items-center gap-6">
+                                <div class="flex flex-col items-center gap-2">
+                                    <Spinner size="sm" />
+                                    <span
+                                        class="text-xs text-slate-600 dark:text-slate-400"
+                                        >Mały</span
+                                    >
+                                </div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <Spinner size="md" />
+                                    <span
+                                        class="text-xs text-slate-600 dark:text-slate-400"
+                                        >Średni</span
+                                    >
+                                </div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <Spinner size="lg" />
+                                    <span
+                                        class="text-xs text-slate-600 dark:text-slate-400"
+                                        >Duży</span
+                                    >
+                                </div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <Spinner size="xl" />
+                                    <span
+                                        class="text-xs text-slate-600 dark:text-slate-400"
+                                        >Bardzo duży</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <p
+                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            >
+                                Warianty
+                            </p>
+                            <div class="flex flex-wrap items-center gap-6">
+                                <div class="flex flex-col items-center gap-2">
+                                    <Spinner variant="primary" />
+                                    <span
+                                        class="text-xs text-slate-600 dark:text-slate-400"
+                                        >Primary</span
+                                    >
+                                </div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <Spinner variant="secondary" />
+                                    <span
+                                        class="text-xs text-slate-600 dark:text-slate-400"
+                                        >Secondary</span
+                                    >
+                                </div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <div
+                                        class="rounded-lg bg-slate-900 p-3 dark:bg-slate-50"
+                                    >
+                                        <Spinner variant="white" />
+                                    </div>
+                                    <span
+                                        class="text-xs text-slate-600 dark:text-slate-400"
+                                        >White</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Card>
+
+                <Card aria-label="Card: Loader">
+                    <template #header>
+                        <p
+                            class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                        >
+                            Loader
+                        </p>
+                    </template>
+
+                    <div class="space-y-6">
+                        <p class="text-sm text-slate-600 dark:text-slate-400">
+                            Zaawansowany loader z animacjami SVG, idealny do
+                            wyświetlania podczas ładowania modułów lub większych
+                            sekcji aplikacji.
+                        </p>
+
+                        <div class="space-y-3">
+                            <p
+                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            >
+                                Warianty animacji
+                            </p>
+                            <div class="grid grid-cols-2 gap-6 md:grid-cols-3">
+                                <div class="flex flex-col items-center gap-2">
+                                    <Loader variant="circles" size="md" />
+                                    <span
+                                        class="text-xs text-slate-600 dark:text-slate-400"
+                                        >Circles</span
+                                    >
+                                </div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <Loader variant="pulse" size="md" />
+                                    <span
+                                        class="text-xs text-slate-600 dark:text-slate-400"
+                                        >Pulse</span
+                                    >
+                                </div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <Loader variant="dots" size="md" />
+                                    <span
+                                        class="text-xs text-slate-600 dark:text-slate-400"
+                                        >Dots</span
+                                    >
+                                </div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <Loader variant="wave" size="md" />
+                                    <span
+                                        class="text-xs text-slate-600 dark:text-slate-400"
+                                        >Wave</span
+                                    >
+                                </div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <Loader variant="orbit" size="md" />
+                                    <span
+                                        class="text-xs text-slate-600 dark:text-slate-400"
+                                        >Orbit</span
+                                    >
+                                </div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <Loader variant="spinner" size="md" />
+                                    <span
+                                        class="text-xs text-slate-600 dark:text-slate-400"
+                                        >Spinner</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <p
+                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            >
+                                Rozmiary
+                            </p>
+                            <div class="flex flex-wrap items-center gap-6">
+                                <div class="flex flex-col items-center gap-2">
+                                    <Loader variant="circles" size="sm" />
+                                    <span
+                                        class="text-xs text-slate-600 dark:text-slate-400"
+                                        >Mały</span
+                                    >
+                                </div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <Loader variant="circles" size="md" />
+                                    <span
+                                        class="text-xs text-slate-600 dark:text-slate-400"
+                                        >Średni</span
+                                    >
+                                </div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <Loader variant="circles" size="lg" />
+                                    <span
+                                        class="text-xs text-slate-600 dark:text-slate-400"
+                                        >Duży</span
+                                    >
+                                </div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <Loader variant="circles" size="xl" />
+                                    <span
+                                        class="text-xs text-slate-600 dark:text-slate-400"
+                                        >Bardzo duży</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <p
+                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            >
+                                Z tekstem
+                            </p>
+                            <div class="flex flex-col items-center gap-4">
+                                <Loader
+                                    variant="circles"
+                                    size="lg"
+                                    text="Ładowanie danych..."
+                                />
+                                <Loader
+                                    variant="pulse"
+                                    size="md"
+                                    text="Proszę czekać..."
+                                />
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <p
+                                class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+                            >
+                                Przykład użycia w sekcji
+                            </p>
+                            <div
+                                class="relative min-h-[200px] rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900"
+                            >
+                                <Loader
+                                    variant="orbit"
+                                    size="lg"
+                                    text="Ładowanie modułu..."
+                                    :centered="true"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </Card>
             </div>
         </section>
 
