@@ -1,9 +1,11 @@
-export default defineNuxtRouteMiddleware((to) => {
-    const authTokenCookie = useCookie<string | null>('auth_token', {
-        default: () => null,
-    });
+export default defineNuxtRouteMiddleware(async (to) => {
+    const { isAuthenticated, checkSession } = useAuthSession();
 
-    if (authTokenCookie.value) return;
+    if (isAuthenticated.value) return;
+
+    const hasSession = await checkSession();
+
+    if (hasSession) return;
 
     const redirectTarget = to.fullPath || '/';
 

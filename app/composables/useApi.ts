@@ -18,7 +18,6 @@ export function useApi<T = unknown>(
     url: string | (() => string),
     options: ApiRequestOptions = {},
 ): ApiResponse<T> {
-    const { session } = useAuthSession();
     const config = useRuntimeConfig();
 
     const isLoading = ref(false);
@@ -64,12 +63,9 @@ export function useApi<T = unknown>(
                 ...options.headers,
             };
 
-            if (!skipAuth && session.value?.token) {
-                headers.Authorization = `Bearer ${session.value.token}`;
-            }
-
             const response = await $fetch<T>(endpoint, {
                 method,
+                credentials: 'include',
                 body:
                     method !== 'GET' && options.body
                         ? (options.body as BodyInit)
@@ -80,7 +76,58 @@ export function useApi<T = unknown>(
             data.value = response;
 
             return response;
-        } catch (err) {
+        } catch (err: unknown) {
+            if (
+                !skipAuth &&
+                err &&
+                typeof err === 'object' &&
+                'statusCode' in err &&
+                err.statusCode === 401
+            ) {
+                const { refreshAccessToken, logout } = useAuthSession();
+                const refreshed = await refreshAccessToken();
+
+                if (refreshed) {
+                    try {
+                        const path = typeof url === 'function' ? url() : url;
+                        const endpoint = buildUrl(path);
+
+                        const retryHeaders: Record<string, string> = {
+                            'Content-Type': 'application/json',
+                            ...options.headers,
+                        };
+
+                        const retryResponse = await $fetch<T>(endpoint, {
+                            method,
+                            credentials: 'include',
+                            body:
+                                method !== 'GET' && options.body
+                                    ? (options.body as BodyInit)
+                                    : undefined,
+                            headers: retryHeaders,
+                        });
+
+                        data.value = retryResponse;
+                        return retryResponse;
+                    } catch (retryErr) {
+                        await logout();
+                        navigateTo('/login');
+                        const apiError =
+                            retryErr instanceof Error
+                                ? retryErr
+                                : new Error('Wystąpił nieoczekiwany błąd');
+                        error.value = apiError;
+                        return null;
+                    }
+                } else {
+                    await logout();
+                    navigateTo('/login');
+                    const apiError = new Error('Sesja wygasła');
+                    error.value = apiError;
+                    return null;
+                }
+            }
+
             const apiError =
                 err instanceof Error
                     ? err

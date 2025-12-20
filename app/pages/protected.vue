@@ -64,11 +64,11 @@ definePageMeta({
 const { addToast } = useToast();
 const { session, logout } = useAuthSession();
 
-function handleLogout() {
-    logout();
+async function handleLogout() {
+    await logout();
     addToast({
-        title: 'Logged out',
-        description: 'Session cleared.',
+        title: 'Wylogowano',
+        description: 'Sesja została zakończona.',
         variant: 'success',
     });
     navigateTo('/login');

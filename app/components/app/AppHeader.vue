@@ -101,13 +101,13 @@ function linkClass(to: string): string {
     return 'text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-slate-50';
 }
 
-function handleLogout() {
+async function handleLogout() {
     const userName = session.value?.userName || 'User';
 
-    logout();
+    await logout();
     addToast({
-        title: 'Logged out',
-        description: `See you, ${userName}!`,
+        title: 'Wylogowano',
+        description: `Do zobaczenia, ${userName}!`,
         variant: 'success',
     });
 }

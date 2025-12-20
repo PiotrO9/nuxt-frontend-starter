@@ -1,47 +1,187 @@
+import { decodeJwt, isTokenExpired, type JwtPayload } from '~/utils/jwt';
+
 export type AuthSession = {
     token: string;
     userName: string;
+    userId?: string;
+    email?: string;
+    expiresAt?: number;
+};
+
+type LoginResponse = {
+    accessToken: string;
+    user: {
+        id: string;
+        userName: string;
+        email: string;
+    };
+};
+
+type RefreshResponse = {
+    accessToken: string;
+};
+
+type MeResponse = {
+    user: {
+        id: string;
+        userName: string;
+        email: string;
+    };
+    accessToken?: string;
 };
 
 export function useAuthSession() {
-    const authTokenCookie = useCookie<string | null>('auth_token', {
-        default: () => null,
-    });
-    const authUserNameCookie = useCookie<string | null>('auth_user_name', {
-        default: () => null,
+    const config = useRuntimeConfig();
+    const apiBase = config.public.apiBase || '/api';
+
+    const session = useState<AuthSession | null>('auth_session', () => null);
+    const isCheckingSession = ref(false);
+
+    const isAuthenticated = computed(() => {
+        if (!session.value?.token) return false;
+
+        if (isTokenExpired(session.value.token)) {
+            return false;
+        }
+
+        return true;
     });
 
-    const session = useState<AuthSession | null>('auth_session', () => {
-        if (!authTokenCookie.value || !authUserNameCookie.value) return null;
+    async function checkSession(): Promise<boolean> {
+        if (isCheckingSession.value) return Boolean(session.value);
 
-        return {
-            token: authTokenCookie.value,
-            userName: authUserNameCookie.value,
+        isCheckingSession.value = true;
+
+        try {
+            const response = await $fetch<MeResponse>(`${apiBase}/auth/me`, {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.accessToken) {
+                const decoded = decodeJwt(response.accessToken) as JwtPayload;
+                const expiresAt = decoded.exp ? decoded.exp * 1000 : undefined;
+
+                session.value = {
+                    token: response.accessToken,
+                    userName: response.user.userName,
+                    userId: response.user.id,
+                    email: response.user.email,
+                    expiresAt,
+                };
+            } else {
+                session.value = {
+                    token: 'valid',
+                    userName: response.user.userName,
+                    userId: response.user.id,
+                    email: response.user.email,
+                };
+            }
+
+            return true;
+        } catch {
+            session.value = null;
+
+            return false;
+        } finally {
+            isCheckingSession.value = false;
+        }
+    }
+
+    async function login(email: string, password: string): Promise<void> {
+        if (!email || !password) {
+            throw new Error('Email i hasło są wymagane');
+        }
+
+        const response = await $fetch<LoginResponse>(`${apiBase}/auth/login`, {
+            method: 'POST',
+            credentials: 'include',
+            body: { email, password },
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const decoded = decodeJwt(response.accessToken) as JwtPayload;
+        const expiresAt = decoded.exp ? decoded.exp * 1000 : undefined;
+
+        session.value = {
+            token: response.accessToken,
+            userName: response.user.userName,
+            userId: response.user.id,
+            email: response.user.email,
+            expiresAt,
         };
-    });
+    }
 
-    const isAuthenticated = computed(() => Boolean(session.value?.token));
+    async function refreshAccessToken(): Promise<boolean> {
+        try {
+            const response = await $fetch<RefreshResponse>(
+                `${apiBase}/auth/refresh`,
+                {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                },
+            );
+
+            const decoded = decodeJwt(response.accessToken) as JwtPayload;
+            const expiresAt = decoded.exp ? decoded.exp * 1000 : undefined;
+
+            session.value = {
+                ...session.value!,
+                token: response.accessToken,
+                expiresAt,
+            };
+
+            return true;
+        } catch {
+            session.value = null;
+
+            return false;
+        }
+    }
+
+    async function logout(): Promise<void> {
+        if (apiBase) {
+            try {
+                await $fetch(`${apiBase}/auth/logout`, {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+            } catch {
+                // Ignoruj błędy przy logout
+            }
+        }
+
+        session.value = null;
+    }
 
     function loginDemo(userName: string) {
         if (!userName) return;
 
-        const token = `demo_${Date.now()}`;
-
-        authTokenCookie.value = token;
-        authUserNameCookie.value = userName;
-        session.value = { token, userName };
-    }
-
-    function logout() {
-        authTokenCookie.value = null;
-        authUserNameCookie.value = null;
-        session.value = null;
+        session.value = {
+            token: `demo_${Date.now()}`,
+            userName,
+        };
     }
 
     return {
         session,
         isAuthenticated,
+        isCheckingSession: computed(() => isCheckingSession.value),
+        login,
         loginDemo,
         logout,
+        refreshAccessToken,
+        checkSession,
     };
 }
