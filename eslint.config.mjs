@@ -43,6 +43,55 @@ export default withNuxt(eslintConfigPrettier, {
                 prev: 'block-like',
                 next: '*',
             },
+            {
+                blankLine: 'always',
+                prev: '*',
+                next: ['if', 'for', 'while', 'switch', 'try'],
+            },
+            {
+                blankLine: 'always',
+                prev: ['if', 'for', 'while', 'switch', 'try'],
+                next: '*',
+            },
+        ],
+        'no-multiple-empty-lines': [
+            'error',
+            {
+                max: 2,
+                maxEOF: 1,
+                maxBOF: 0,
+            },
+        ],
+        'keyword-spacing': [
+            'error',
+            {
+                before: true,
+                after: true,
+            },
+        ],
+        'vue/define-macros-order': [
+            'error',
+            {
+                order: [
+                    'defineOptions',
+                    'defineProps',
+                    'defineEmits',
+                    'defineSlots',
+                ],
+            },
+        ],
+        'vue/component-name-in-template-casing': [
+            'error',
+            'PascalCase',
+            {
+                registeredComponentsOnly: false,
+            },
+        ],
+        'vue/block-order': [
+            'error',
+            {
+                order: ['script', 'template', 'style'],
+            },
         ],
     },
 });

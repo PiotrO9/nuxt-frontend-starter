@@ -1,9 +1,3 @@
-<template>
-    <span :aria-label="ariaLabel" :class="badgeClass" role="status">
-        <slot />
-    </span>
-</template>
-
 <script setup lang="ts">
 export type BadgeVariant =
     | 'primary'
@@ -51,3 +45,9 @@ const badgeClass = computed(() => {
     return `${base} ${sizeClasses[props.size]} ${variantClasses[props.variant]}`;
 });
 </script>
+
+<template>
+    <span :aria-label="ariaLabel" :class="badgeClass" role="status">
+        <slot />
+    </span>
+</template>

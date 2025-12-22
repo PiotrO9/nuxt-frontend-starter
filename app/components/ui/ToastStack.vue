@@ -80,7 +80,9 @@ function getToastUi(variant: ToastVariant): ToastUi {
 
 function getToastIcon(variant: ToastVariant): string {
     if (variant === 'success') return 'heroicons:check-circle';
+
     if (variant === 'warning') return 'heroicons:exclamation-triangle';
+
     if (variant === 'error') return 'heroicons:x-circle';
 
     return 'heroicons:information-circle';
@@ -151,7 +153,7 @@ function handleCloseKeyDown(event: KeyboardEvent, toastId: string) {
                             </p>
                             <p
                                 v-if="toast.description"
-                                class="mt-1 text-sm text-secondary-700 dark:text-secondary-300"
+                                class="text-secondary-700 dark:text-secondary-300 mt-1 text-sm"
                             >
                                 {{ toast.description }}
                             </p>

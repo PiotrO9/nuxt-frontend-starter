@@ -83,7 +83,7 @@ onMounted(() => {
         <dialog
             v-show="open"
             ref="dialogRef"
-            class="dialog-content fixed inset-0 m-auto max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] max-w-md rounded-xl border-0 bg-white p-0 shadow-2xl outline-none backdrop:bg-black/30 backdrop:backdrop-blur-sm dark:bg-secondary-900 dark:text-secondary-50"
+            class="dialog-content dark:bg-secondary-900 dark:text-secondary-50 fixed inset-0 m-auto max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] max-w-md rounded-xl border-0 bg-white p-0 shadow-2xl outline-none backdrop:bg-black/30 backdrop:backdrop-blur-sm"
             :aria-labelledby="
                 hasHeaderSlot || title ? 'dialog-title' : undefined
             "
@@ -101,7 +101,7 @@ onMounted(() => {
                 <h2
                     v-else-if="title"
                     id="dialog-title"
-                    class="mb-3 text-xl font-semibold text-secondary-900 dark:text-secondary-50"
+                    class="text-secondary-900 dark:text-secondary-50 mb-3 text-xl font-semibold"
                 >
                     {{ title }}
                 </h2>
@@ -113,7 +113,7 @@ onMounted(() => {
                 <p
                     v-else-if="message"
                     id="dialog-message"
-                    class="mb-6 text-secondary-600 dark:text-secondary-400"
+                    class="text-secondary-600 dark:text-secondary-400 mb-6"
                 >
                     {{ message }}
                 </p>
@@ -126,7 +126,7 @@ onMounted(() => {
                     <button
                         type="button"
                         tabindex="0"
-                        class="rounded-lg border border-secondary-300 bg-white px-4 py-2 text-sm font-medium text-secondary-700 transition-colors duration-150 hover:bg-secondary-50 focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:border-secondary-700 dark:bg-secondary-800 dark:text-secondary-300 dark:hover:bg-secondary-700"
+                        class="border-secondary-300 text-secondary-700 hover:bg-secondary-50 focus-visible:ring-secondary-500 dark:border-secondary-700 dark:bg-secondary-800 dark:text-secondary-300 dark:hover:bg-secondary-700 rounded-lg border bg-white px-4 py-2 text-sm font-medium transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
                         :aria-label="cancelText"
                         @click="handleCancel"
                         @keydown="(e) => e.key === 'Enter' && handleCancel()"
@@ -136,7 +136,7 @@ onMounted(() => {
                     <button
                         type="button"
                         tabindex="0"
-                        class="rounded-lg bg-danger-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-danger-700 focus-visible:ring-2 focus-visible:ring-danger-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:bg-danger-700 dark:hover:bg-danger-600"
+                        class="bg-danger-600 hover:bg-danger-700 focus-visible:ring-danger-500 dark:bg-danger-700 dark:hover:bg-danger-600 rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
                         :aria-label="confirmText"
                         @click="handleConfirm"
                         @keydown="(e) => e.key === 'Enter' && handleConfirm()"

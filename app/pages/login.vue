@@ -21,6 +21,7 @@ function resolveRedirectTarget(): string {
     const redirectQuery = route.query.redirect;
 
     if (!redirectQuery) return '/protected';
+
     if (Array.isArray(redirectQuery)) return redirectQuery[0] || '/protected';
 
     return redirectQuery;
@@ -53,6 +54,7 @@ async function handleLogin() {
     } catch (err) {
         const errorMessage =
             err instanceof Error ? err.message : 'Błąd podczas logowania';
+
         addToast({
             title: 'Błąd logowania',
             description: errorMessage,

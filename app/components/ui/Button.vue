@@ -1,24 +1,3 @@
-<template>
-    <button
-        :type="buttonType"
-        :disabled="isDisabled"
-        :aria-label="ariaLabel"
-        :class="buttonClass"
-        @click="handleClick"
-    >
-        <span v-if="isLoading" class="inline-flex items-center gap-2">
-            <span
-                class="h-4 w-4 animate-spin rounded-full border-2 border-current border-r-transparent"
-                aria-hidden="true"
-            />
-            <span class="text-sm font-medium">Loading…</span>
-        </span>
-        <span v-else class="inline-flex items-center gap-2">
-            <slot />
-        </span>
-    </button>
-</template>
-
 <script setup lang="ts">
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
 
@@ -67,6 +46,28 @@ const buttonClass = computed(() => {
 
 function handleClick(event: MouseEvent) {
     if (isDisabled.value) return;
+
     emit('click', event);
 }
 </script>
+
+<template>
+    <button
+        :type="buttonType"
+        :disabled="isDisabled"
+        :aria-label="ariaLabel"
+        :class="buttonClass"
+        @click="handleClick"
+    >
+        <span v-if="isLoading" class="inline-flex items-center gap-2">
+            <span
+                class="h-4 w-4 animate-spin rounded-full border-2 border-current border-r-transparent"
+                aria-hidden="true"
+            />
+            <span class="text-sm font-medium">Loading…</span>
+        </span>
+        <span v-else class="inline-flex items-center gap-2">
+            <slot />
+        </span>
+    </button>
+</template>

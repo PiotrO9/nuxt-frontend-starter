@@ -45,6 +45,7 @@ function handleClick() {
 
 function handleKeyDown(event: KeyboardEvent) {
     if (props.isDisabled) return;
+
     if (event.key !== 'Enter' && event.key !== ' ') return;
 
     event.preventDefault();

@@ -1,15 +1,3 @@
-<template>
-    <div
-        :aria-label="ariaLabel"
-        :class="skeletonClass"
-        :style="skeletonStyle"
-        role="status"
-        aria-live="polite"
-    >
-        <span class="sr-only">{{ ariaLabel }}</span>
-    </div>
-</template>
-
 <script setup lang="ts">
 type Props = {
     ariaLabel?: string;
@@ -54,6 +42,18 @@ const skeletonStyle = computed(() => {
     };
 });
 </script>
+
+<template>
+    <div
+        :aria-label="ariaLabel"
+        :class="skeletonClass"
+        :style="skeletonStyle"
+        role="status"
+        aria-live="polite"
+    >
+        <span class="sr-only">{{ ariaLabel }}</span>
+    </div>
+</template>
 
 <style scoped>
 @keyframes wave {

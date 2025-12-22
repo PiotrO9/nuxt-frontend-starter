@@ -1,66 +1,3 @@
-<template>
-    <header
-        class="sticky top-0 z-40 border-b border-secondary-200 bg-white/80 backdrop-blur dark:border-secondary-800 dark:bg-secondary-950/80"
-    >
-        <div
-            class="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-4"
-        >
-            <div class="flex items-center gap-3">
-                <NuxtLink
-                    to="/"
-                    class="rounded-xl px-3 py-2 text-sm font-bold text-secondary-900 transition hover:bg-secondary-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-secondary-50 dark:hover:bg-secondary-800 dark:focus-visible:ring-offset-secondary-950"
-                    aria-label="Go to home page"
-                >
-                    Frontend Starter
-                </NuxtLink>
-                <nav
-                    class="hidden items-center gap-1 md:flex"
-                    aria-label="Main navigation"
-                >
-                    <NuxtLink
-                        v-for="link in navLinks"
-                        :key="link.to"
-                        :to="link.to"
-                        class="rounded-xl px-3 py-2 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-secondary-950"
-                        :class="linkClass(link.to)"
-                        :aria-label="link.ariaLabel"
-                    >
-                        {{ link.label }}
-                    </NuxtLink>
-                </nav>
-            </div>
-
-            <div class="flex items-center gap-2">
-                <Switch
-                    :checked="isDark"
-                    :aria-label="switchAriaLabel"
-                    left-icon="heroicons:sun"
-                    right-icon="heroicons:moon"
-                    left-icon-class="text-warning-500"
-                    right-icon-class="text-secondary-600 dark:text-secondary-300"
-                    @update:checked="handleToggleDarkMode"
-                />
-                <Button
-                    v-if="isAuthenticated"
-                    variant="secondary"
-                    aria-label="Log out"
-                    @click="handleLogout"
-                >
-                    Log out
-                </Button>
-                <Button
-                    v-else
-                    variant="secondary"
-                    aria-label="Go to login"
-                    @click="handleGoToLogin"
-                >
-                    Log in
-                </Button>
-            </div>
-        </div>
-    </header>
-</template>
-
 <script setup lang="ts">
 type NavLink = {
     to: string;
@@ -120,3 +57,66 @@ function handleToggleDarkMode() {
     toggleDarkMode();
 }
 </script>
+
+<template>
+    <header
+        class="border-secondary-200 dark:border-secondary-800 dark:bg-secondary-950/80 sticky top-0 z-40 border-b bg-white/80 backdrop-blur"
+    >
+        <div
+            class="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-4"
+        >
+            <div class="flex items-center gap-3">
+                <NuxtLink
+                    to="/"
+                    class="text-secondary-900 hover:bg-secondary-100 focus-visible:ring-primary-400 dark:text-secondary-50 dark:hover:bg-secondary-800 dark:focus-visible:ring-offset-secondary-950 rounded-xl px-3 py-2 text-sm font-bold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                    aria-label="Go to home page"
+                >
+                    Frontend Starter
+                </NuxtLink>
+                <nav
+                    class="hidden items-center gap-1 md:flex"
+                    aria-label="Main navigation"
+                >
+                    <NuxtLink
+                        v-for="link in navLinks"
+                        :key="link.to"
+                        :to="link.to"
+                        class="focus-visible:ring-primary-400 dark:focus-visible:ring-offset-secondary-950 rounded-xl px-3 py-2 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                        :class="linkClass(link.to)"
+                        :aria-label="link.ariaLabel"
+                    >
+                        {{ link.label }}
+                    </NuxtLink>
+                </nav>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <Switch
+                    :checked="isDark"
+                    :aria-label="switchAriaLabel"
+                    left-icon="heroicons:sun"
+                    right-icon="heroicons:moon"
+                    left-icon-class="text-warning-500"
+                    right-icon-class="text-secondary-600 dark:text-secondary-300"
+                    @update:checked="handleToggleDarkMode"
+                />
+                <Button
+                    v-if="isAuthenticated"
+                    variant="secondary"
+                    aria-label="Log out"
+                    @click="handleLogout"
+                >
+                    Log out
+                </Button>
+                <Button
+                    v-else
+                    variant="secondary"
+                    aria-label="Go to login"
+                    @click="handleGoToLogin"
+                >
+                    Log in
+                </Button>
+            </div>
+        </div>
+    </header>
+</template>

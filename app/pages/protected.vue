@@ -1,4 +1,27 @@
-﻿<template>
+﻿<script setup lang="ts">
+definePageMeta({
+    middleware: ['auth'],
+});
+
+const { addToast } = useToast();
+const { session, logout } = useAuthSession();
+
+async function handleLogout() {
+    await logout();
+    addToast({
+        title: 'Wylogowano',
+        description: 'Sesja została zakończona.',
+        variant: 'success',
+    });
+    navigateTo('/login');
+}
+
+function handleGoHome() {
+    navigateTo('/');
+}
+</script>
+
+<template>
     <div class="mx-auto w-full max-w-3xl space-y-6">
         <div class="space-y-2">
             <h1 class="text-2xl font-extrabold tracking-tight">Protected</h1>
@@ -55,26 +78,3 @@
         </Card>
     </div>
 </template>
-
-<script setup lang="ts">
-definePageMeta({
-    middleware: ['auth'],
-});
-
-const { addToast } = useToast();
-const { session, logout } = useAuthSession();
-
-async function handleLogout() {
-    await logout();
-    addToast({
-        title: 'Wylogowano',
-        description: 'Sesja została zakończona.',
-        variant: 'success',
-    });
-    navigateTo('/login');
-}
-
-function handleGoHome() {
-    navigateTo('/');
-}
-</script>

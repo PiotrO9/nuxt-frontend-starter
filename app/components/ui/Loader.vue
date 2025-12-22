@@ -1,3 +1,84 @@
+<script setup lang="ts">
+export type LoaderVariant =
+    | 'circles'
+    | 'pulse'
+    | 'dots'
+    | 'wave'
+    | 'orbit'
+    | 'spinner';
+
+export type LoaderSize = 'sm' | 'md' | 'lg' | 'xl';
+
+export type LoaderColor = 'primary' | 'secondary' | 'white';
+
+type Props = {
+    ariaLabel?: string;
+    variant?: LoaderVariant;
+    size?: LoaderSize;
+    color?: LoaderColor;
+    text?: string;
+    fullScreen?: boolean;
+    centered?: boolean;
+};
+
+const props = withDefaults(defineProps<Props>(), {
+    ariaLabel: 'Ładowanie...',
+    variant: 'circles',
+    size: 'lg',
+    color: 'primary',
+    text: undefined,
+    fullScreen: false,
+    centered: true,
+});
+
+const loaderClass = computed(() => {
+    const base = 'flex flex-col items-center justify-center';
+
+    if (props.fullScreen) {
+        return `${base} fixed inset-0 z-50 bg-white/90 dark:bg-secondary-950/90 backdrop-blur-sm`;
+    }
+
+    if (props.centered) {
+        return `${base} w-full py-12`;
+    }
+
+    return base;
+});
+
+const containerClass = computed(() => {
+    return 'flex items-center justify-center';
+});
+
+const svgClass = computed(() => {
+    const sizeClasses = {
+        sm: 'h-16 w-16',
+        md: 'h-24 w-24',
+        lg: 'h-32 w-32',
+        xl: 'h-40 w-40',
+    };
+
+    const colorClasses = {
+        primary: 'text-primary-500 dark:text-primary-400',
+        secondary: 'text-secondary-600 dark:text-secondary-400',
+        white: 'text-white',
+    };
+
+    return `${sizeClasses[props.size]} ${colorClasses[props.color]}`;
+});
+
+const textClass = computed(() => {
+    const base = 'mt-4 text-sm font-medium';
+
+    const colorClasses = {
+        primary: 'text-primary-600 dark:text-primary-400',
+        secondary: 'text-secondary-600 dark:text-secondary-400',
+        white: 'text-white',
+    };
+
+    return `${base} ${colorClasses[props.color]}`;
+});
+</script>
+
 <template>
     <div
         :aria-label="ariaLabel"
@@ -258,84 +339,3 @@
         </p>
     </div>
 </template>
-
-<script setup lang="ts">
-export type LoaderVariant =
-    | 'circles'
-    | 'pulse'
-    | 'dots'
-    | 'wave'
-    | 'orbit'
-    | 'spinner';
-
-export type LoaderSize = 'sm' | 'md' | 'lg' | 'xl';
-
-export type LoaderColor = 'primary' | 'secondary' | 'white';
-
-type Props = {
-    ariaLabel?: string;
-    variant?: LoaderVariant;
-    size?: LoaderSize;
-    color?: LoaderColor;
-    text?: string;
-    fullScreen?: boolean;
-    centered?: boolean;
-};
-
-const props = withDefaults(defineProps<Props>(), {
-    ariaLabel: 'Ładowanie...',
-    variant: 'circles',
-    size: 'lg',
-    color: 'primary',
-    text: undefined,
-    fullScreen: false,
-    centered: true,
-});
-
-const loaderClass = computed(() => {
-    const base = 'flex flex-col items-center justify-center';
-
-    if (props.fullScreen) {
-        return `${base} fixed inset-0 z-50 bg-white/90 dark:bg-secondary-950/90 backdrop-blur-sm`;
-    }
-
-    if (props.centered) {
-        return `${base} w-full py-12`;
-    }
-
-    return base;
-});
-
-const containerClass = computed(() => {
-    return 'flex items-center justify-center';
-});
-
-const svgClass = computed(() => {
-    const sizeClasses = {
-        sm: 'h-16 w-16',
-        md: 'h-24 w-24',
-        lg: 'h-32 w-32',
-        xl: 'h-40 w-40',
-    };
-
-    const colorClasses = {
-        primary: 'text-primary-500 dark:text-primary-400',
-        secondary: 'text-secondary-600 dark:text-secondary-400',
-        white: 'text-white',
-    };
-
-    return `${sizeClasses[props.size]} ${colorClasses[props.color]}`;
-});
-
-const textClass = computed(() => {
-    const base = 'mt-4 text-sm font-medium';
-
-    const colorClasses = {
-        primary: 'text-primary-600 dark:text-primary-400',
-        secondary: 'text-secondary-600 dark:text-secondary-400',
-        white: 'text-white',
-    };
-
-    return `${base} ${colorClasses[props.color]}`;
-});
-</script>

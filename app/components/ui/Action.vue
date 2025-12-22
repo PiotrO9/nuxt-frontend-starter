@@ -1,39 +1,3 @@
-<template>
-    <component
-        :is="tag"
-        :type="tag === 'button' ? buttonType : undefined"
-        :disabled="isDisabled && tag === 'button'"
-        :href="tag === 'a' ? href : undefined"
-        :aria-label
-        :aria-disabled="isDisabled"
-        :tabindex="isDisabled ? -1 : 0"
-        :class="[actionClass, loadingClasses]"
-        @click="handleClick"
-        @keydown="handleKeyDown"
-    >
-        <div
-            :class="{
-                'opacity-0': isLoading && circle,
-                'opacity-50': isLoading && !circle,
-            }"
-        >
-            <slot />
-        </div>
-        <div
-            v-if="isLoading"
-            class="absolute inset-0 z-10 flex cursor-wait items-center justify-center gap-2"
-            aria-hidden="true"
-            @click.stop
-            @mousedown.stop
-            @mouseup.stop
-        >
-            <span
-                class="size-4 animate-spin cursor-wait rounded-full border-2 border-current border-r-transparent"
-            />
-        </div>
-    </component>
-</template>
-
 <script setup lang="ts">
 export type ActionVariant = 'primary' | 'secondary';
 
@@ -130,3 +94,39 @@ function handleKeyDown(event: KeyboardEvent) {
     }
 }
 </script>
+
+<template>
+    <component
+        :is="tag"
+        :type="tag === 'button' ? buttonType : undefined"
+        :disabled="isDisabled && tag === 'button'"
+        :href="tag === 'a' ? href : undefined"
+        :aria-label
+        :aria-disabled="isDisabled"
+        :tabindex="isDisabled ? -1 : 0"
+        :class="[actionClass, loadingClasses]"
+        @click="handleClick"
+        @keydown="handleKeyDown"
+    >
+        <div
+            :class="{
+                'opacity-0': isLoading && circle,
+                'opacity-50': isLoading && !circle,
+            }"
+        >
+            <slot />
+        </div>
+        <div
+            v-if="isLoading"
+            class="absolute inset-0 z-10 flex cursor-wait items-center justify-center gap-2"
+            aria-hidden="true"
+            @click.stop
+            @mousedown.stop
+            @mouseup.stop
+        >
+            <span
+                class="size-4 animate-spin cursor-wait rounded-full border-2 border-current border-r-transparent"
+            />
+        </div>
+    </component>
+</template>

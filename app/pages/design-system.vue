@@ -209,6 +209,7 @@ function handleKeyDownCopySwatch(
     swatch: ColorSwatch,
 ) {
     if (!isEnterOrSpaceKey(event)) return;
+
     event.preventDefault();
     void handleCopySwatch(group, swatch);
 }
