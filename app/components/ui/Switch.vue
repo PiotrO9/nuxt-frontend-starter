@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type Props = {
+interface Props {
     checked: boolean;
     ariaLabel: string;
     leftIcon?: string;
@@ -7,11 +7,11 @@ type Props = {
     leftIconClass?: string;
     rightIconClass?: string;
     isDisabled?: boolean;
-};
+}
 
-type Emits = {
+interface Emits {
     (e: 'update:checked' | 'change', value: boolean): void;
-};
+}
 
 const props = withDefaults(defineProps<Props>(), {
     leftIcon: undefined,

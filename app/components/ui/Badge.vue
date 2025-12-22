@@ -7,11 +7,11 @@ export type BadgeVariant =
     | 'danger'
     | 'info';
 
-type Props = {
+interface Props {
     ariaLabel?: string;
     variant?: BadgeVariant;
     size?: 'sm' | 'md' | 'lg';
-};
+}
 
 const props = withDefaults(defineProps<Props>(), {
     ariaLabel: 'Znacznik',

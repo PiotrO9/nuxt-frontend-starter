@@ -2,12 +2,12 @@
 export type SpinnerSize = 'sm' | 'md' | 'lg' | 'xl';
 export type SpinnerVariant = 'primary' | 'secondary' | 'white';
 
-type Props = {
+interface Props {
     ariaLabel?: string;
     size?: SpinnerSize;
     variant?: SpinnerVariant;
     fullScreen?: boolean;
-};
+}
 
 const props = withDefaults(defineProps<Props>(), {
     ariaLabel: 'Ładowanie...',

@@ -2,16 +2,16 @@
 import type { ToastVariant } from '~/composables/useToast';
 import { isEnterOrSpaceKey } from '~/utils/keyboard';
 
-type ColorSwatch = {
+interface ColorSwatch {
     name: string;
     className: string;
     previewClass: string;
-};
+}
 
-type ColorGroup = {
+interface ColorGroup {
     name: string;
     swatches: ColorSwatch[];
-};
+}
 
 useHead({
     title: 'Design system',

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 export type ActionVariant = 'primary' | 'secondary';
 
-type Props = {
+interface Props {
     tag?: string;
     ariaLabel?: string;
     variant?: ActionVariant;
@@ -10,11 +10,11 @@ type Props = {
     isDisabled?: boolean;
     href?: string;
     circle?: boolean;
-};
+}
 
-type Emits = {
+interface Emits {
     (e: 'click', event: MouseEvent): void;
-};
+}
 
 const props = withDefaults(defineProps<Props>(), {
     tag: 'button',

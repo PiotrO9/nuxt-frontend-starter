@@ -4,19 +4,19 @@ import type { ToastVariant } from '~/composables/useToast';
 
 const { toasts, removeToast } = useToast();
 
-type ToastA11y = {
+interface ToastA11y {
     role: 'status' | 'alert';
     ariaLive: 'polite' | 'assertive';
-};
+}
 
-type ToastUi = {
+interface ToastUi {
     containerClass: string;
     iconWrapperClass: string;
     iconClass: string;
     closeButtonClass: string;
     closeRingClass: string;
     a11y: ToastA11y;
-};
+}
 
 function getToastUi(variant: ToastVariant): ToastUi {
     if (variant === 'success') {

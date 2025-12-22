@@ -1,25 +1,26 @@
 export type ToastVariant = 'success' | 'info' | 'warning' | 'error';
 
-export type ToastItem = {
+export interface ToastItem {
     id: string;
     title: string;
     description?: string;
     variant: ToastVariant;
     createdAt: number;
-};
+}
 
-export type AddToastInput = {
+export interface AddToastInput {
     title: string;
     description?: string;
     variant?: ToastVariant;
     durationMs?: number;
-};
+}
 
 export function useToast() {
     const toasts = useState<ToastItem[]>('ui_toasts', () => []);
 
     function removeToast(toastId: string) {
         if (!toastId) return;
+
         toasts.value = toasts.value.filter((toast) => toast.id !== toastId);
     }
 

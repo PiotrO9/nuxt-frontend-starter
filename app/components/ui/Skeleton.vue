@@ -1,11 +1,11 @@
 <script setup lang="ts">
-type Props = {
+interface Props {
     ariaLabel?: string;
     width?: string;
     height?: string;
     rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full';
     variant?: 'default' | 'pulse' | 'wave';
-};
+}
 
 const props = withDefaults(defineProps<Props>(), {
     ariaLabel: 'Ładowanie...',

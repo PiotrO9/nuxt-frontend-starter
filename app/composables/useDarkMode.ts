@@ -3,6 +3,7 @@ export function useDarkMode() {
 
     function updateIsDarkFromDOM() {
         if (import.meta.server) return;
+
         isDark.value = document.documentElement.classList.contains('dark');
     }
 
@@ -41,6 +42,7 @@ export function useDarkMode() {
 
     onMounted(() => {
         const savedDarkMode = localStorage.getItem('dark-mode');
+
         if (savedDarkMode === 'true') {
             document.documentElement.classList.add('dark');
         } else if (savedDarkMode === 'false') {

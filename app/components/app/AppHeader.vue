@@ -1,9 +1,9 @@
 <script setup lang="ts">
-type NavLink = {
+interface NavLink {
     to: string;
     label: string;
     ariaLabel: string;
-};
+}
 
 const route = useRoute();
 const { isAuthenticated, session, logout } = useAuthSession();

@@ -1,34 +1,34 @@
 import { decodeJwt, isTokenExpired, type JwtPayload } from '~/utils/jwt';
 
-export type AuthSession = {
+export interface AuthSession {
     token: string;
     userName: string;
     userId?: string;
     email?: string;
     expiresAt?: number;
-};
+}
 
-type LoginResponse = {
+interface LoginResponse {
     accessToken: string;
     user: {
         id: string;
         userName: string;
         email: string;
     };
-};
+}
 
-type RefreshResponse = {
+interface RefreshResponse {
     accessToken: string;
-};
+}
 
-type MeResponse = {
+interface MeResponse {
     user: {
         id: string;
         userName: string;
         email: string;
     };
     accessToken?: string;
-};
+}
 
 export function useAuthSession() {
     const config = useRuntimeConfig();

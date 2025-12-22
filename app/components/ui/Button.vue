@@ -1,17 +1,17 @@
 <script setup lang="ts">
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
 
-type Props = {
+interface Props {
     ariaLabel?: string;
     variant?: ButtonVariant;
     buttonType?: 'button' | 'submit' | 'reset';
     isLoading?: boolean;
     isDisabled?: boolean;
-};
+}
 
-type Emits = {
+interface Emits {
     (e: 'click', event: MouseEvent): void;
-};
+}
 
 const props = withDefaults(defineProps<Props>(), {
     ariaLabel: 'Przycisk',

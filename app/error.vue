@@ -1,4 +1,36 @@
-﻿<template>
+﻿<script setup lang="ts">
+import type { NuxtError } from '#app';
+
+const error = useError() as Ref<NuxtError | null>;
+
+const title = computed(() => {
+    const statusCode = error.value?.statusCode;
+
+    if (statusCode === 404) return 'Page not found (404)';
+
+    if (statusCode) return `Error (${statusCode})`;
+
+    return 'Something went wrong';
+});
+
+const description = computed(() => {
+    const message = error.value?.message;
+
+    if (typeof message === 'string' && message.trim()) return message;
+
+    return 'Try going back to the home page or retry the action.';
+});
+
+function handleGoHome() {
+    clearError({ redirect: '/' });
+}
+
+function handleTryAgain() {
+    clearError();
+}
+</script>
+
+<template>
     <div
         class="min-h-dvh bg-white text-slate-950 dark:bg-slate-950 dark:text-slate-50"
     >
@@ -44,34 +76,3 @@
         </div>
     </div>
 </template>
-
-<script setup lang="ts">
-import type { NuxtError } from '#app';
-
-const error = useError() as Ref<NuxtError | null>;
-
-const title = computed(() => {
-    const statusCode = error.value?.statusCode;
-
-    if (statusCode === 404) return 'Page not found (404)';
-    if (statusCode) return `Error (${statusCode})`;
-
-    return 'Something went wrong';
-});
-
-const description = computed(() => {
-    const message = error.value?.message;
-
-    if (typeof message === 'string' && message.trim()) return message;
-
-    return 'Try going back to the home page or retry the action.';
-});
-
-function handleGoHome() {
-    clearError({ redirect: '/' });
-}
-
-function handleTryAgain() {
-    clearError();
-}
-</script>

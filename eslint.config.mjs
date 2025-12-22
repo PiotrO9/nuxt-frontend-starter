@@ -93,5 +93,56 @@ export default withNuxt(eslintConfigPrettier, {
                 order: ['script', 'template', 'style'],
             },
         ],
+
+        'vue/v-bind-style': ['error', 'shorthand'],
+        'vue/v-on-style': ['error', 'shorthand'],
+        'vue/v-slot-style': ['error', 'shorthand'],
+
+        'vue/component-definition-name-casing': ['error', 'PascalCase'],
+        'vue/prop-name-casing': ['error', 'camelCase'],
+        'vue/attribute-hyphenation': ['error', 'always'],
+
+        'vue/require-v-for-key': 'error',
+        'vue/no-duplicate-attributes': 'error',
+        'vue/no-use-v-if-with-v-for': 'error',
+        'vue/html-self-closing': [
+            'error',
+            {
+                html: {
+                    void: 'always',
+                    normal: 'always',
+                    component: 'always',
+                },
+                svg: 'always',
+                math: 'always',
+            },
+        ],
+        'vue/html-quotes': ['error', 'double'],
+        'vue/v-on-event-hyphenation': ['error', 'always'],
+
+        'vue/define-props-declaration': ['error', 'type-based'],
+        'vue/define-emits-declaration': ['error', 'type-based'],
+        'vue/no-mutating-props': 'error',
+
+        '@typescript-eslint/prefer-as-const': 'error',
+        '@typescript-eslint/consistent-type-definitions': [
+            'error',
+            'interface',
+        ],
+        '@typescript-eslint/no-explicit-any': 'warn',
+
+        'prefer-const': 'error',
+        'prefer-template': 'error',
+        'prefer-arrow-callback': 'error',
+        'no-else-return': 'warn',
+
+        'comma-dangle': ['error', 'always-multiline'],
+        'object-curly-spacing': ['error', 'always'],
+        'array-bracket-spacing': ['error', 'never'],
+        'computed-property-spacing': ['error', 'never'],
+        'space-before-blocks': 'error',
+        'space-infix-ops': 'error',
+        'eol-last': ['error', 'always'],
+        'no-trailing-spaces': 'error',
     },
 });

@@ -11,7 +11,7 @@ export type LoaderSize = 'sm' | 'md' | 'lg' | 'xl';
 
 export type LoaderColor = 'primary' | 'secondary' | 'white';
 
-type Props = {
+interface Props {
     ariaLabel?: string;
     variant?: LoaderVariant;
     size?: LoaderSize;
@@ -19,7 +19,7 @@ type Props = {
     text?: string;
     fullScreen?: boolean;
     centered?: boolean;
-};
+}
 
 const props = withDefaults(defineProps<Props>(), {
     ariaLabel: 'Ładowanie...',

@@ -1,17 +1,17 @@
 export type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
-export type ApiRequestOptions = {
+export interface ApiRequestOptions {
     body?: unknown;
     headers?: Record<string, string>;
     skipAuth?: boolean;
-};
+}
 
-export type ApiResponse<T = unknown> = {
+export interface ApiResponse<T = unknown> {
     data: ComputedRef<T | null>;
     error: ComputedRef<Error | null>;
     isLoading: ComputedRef<boolean>;
     execute: () => Promise<T | null>;
-};
+}
 
 export function useApi<T = unknown>(
     method: Method,
@@ -108,6 +108,7 @@ export function useApi<T = unknown>(
                         });
 
                         data.value = retryResponse;
+
                         return retryResponse;
                     } catch (retryErr) {
                         await logout();
@@ -116,14 +117,18 @@ export function useApi<T = unknown>(
                             retryErr instanceof Error
                                 ? retryErr
                                 : new Error('Wystąpił nieoczekiwany błąd');
+
                         error.value = apiError;
+
                         return null;
                     }
                 } else {
                     await logout();
                     navigateTo('/login');
                     const apiError = new Error('Sesja wygasła');
+
                     error.value = apiError;
+
                     return null;
                 }
             }

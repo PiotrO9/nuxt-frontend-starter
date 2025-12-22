@@ -1,7 +1,7 @@
 <script setup lang="ts">
-type Props = {
+interface Props {
     ariaLabel?: string;
-};
+}
 
 withDefaults(defineProps<Props>(), {
     ariaLabel: 'Karta',
