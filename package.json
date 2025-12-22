@@ -1,7 +1,23 @@
 {
     "name": "frontend-starter",
+    "version": "1.0.0",
     "type": "module",
     "private": true,
+    "description": "Frontend starter template with Nuxt 3, Vue 3, TypeScript and TailwindCSS",
+    "keywords": [
+        "nuxt",
+        "vue",
+        "typescript",
+        "tailwindcss",
+        "starter",
+        "template"
+    ],
+    "author": "",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/PiotrO9/nuxt-frontend-starter.git"
+    },
     "scripts": {
         "build": "nuxt build",
         "dev": "nuxt dev",
