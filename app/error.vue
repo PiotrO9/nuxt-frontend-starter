@@ -60,16 +60,16 @@ function handleTryAgain() {
                 </template>
 
                 <div class="flex flex-wrap gap-2">
-                    <Button
+                    <Action
                         aria-label="Go back to home page"
                         @click="handleGoHome"
-                        >Home</Button
+                        >Home</Action
                     >
-                    <Button
+                    <Action
                         variant="secondary"
                         aria-label="Try again"
                         @click="handleTryAgain"
-                        >Try again</Button
+                        >Try again</Action
                     >
                 </div>
             </Card>

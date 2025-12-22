@@ -12,7 +12,7 @@ const apiGet = useApi<{
 
 const postBody = ref({
     title: 'Test Post',
-    body: 'To jest przykładowy post',
+    body: 'This is an example post',
     userId: 1,
 });
 
@@ -47,8 +47,8 @@ function handleApiPost() {
         <div class="flex flex-col gap-2">
             <h1 class="text-2xl font-extrabold tracking-tight">API Demo</h1>
             <p class="text-slate-700 dark:text-slate-300">
-                Przykłady użycia composable useApi do odpytywania API oraz
-                komponenty UI.
+                Examples of using the useApi composable to query APIs and UI
+                components.
             </p>
         </div>
 
@@ -64,34 +64,36 @@ function handleApiPost() {
             <div class="space-y-4">
                 <div class="space-y-2">
                     <p class="text-sm text-slate-600 dark:text-slate-400">
-                        Przykłady użycia composable useApi. Pełne URL-e
-                        (http/https) są używane bez zmian, relatywne ścieżki
-                        używają base URL z .env (NUXT_PUBLIC_API_BASE).
+                        Examples of using the useApi composable. Full URLs
+                        (http/https) are used as-is, relative paths use the base
+                        URL from .env (NUXT_PUBLIC_API_BASE).
                     </p>
                     <div class="flex flex-wrap gap-3">
-                        <Button
-                            :disabled="apiGet.isLoading.value"
-                            aria-label="Wykonaj GET request"
+                        <Action
+                            :is-loading="apiGet.isLoading.value"
+                            :is-disabled="apiGet.isLoading.value"
+                            aria-label="Execute GET request"
                             @click="handleApiGet"
                         >
                             {{
                                 apiGet.isLoading.value
-                                    ? 'Ładowanie...'
+                                    ? 'Loading...'
                                     : 'GET Request'
                             }}
-                        </Button>
-                        <Button
+                        </Action>
+                        <Action
                             variant="secondary"
-                            :disabled="apiPost.isLoading.value"
-                            aria-label="Wykonaj POST request"
+                            :is-loading="apiPost.isLoading.value"
+                            :is-disabled="apiPost.isLoading.value"
+                            aria-label="Execute POST request"
                             @click="handleApiPost"
                         >
                             {{
                                 apiPost.isLoading.value
-                                    ? 'Ładowanie...'
+                                    ? 'Loading...'
                                     : 'POST Request'
                             }}
-                        </Button>
+                        </Action>
                     </div>
                 </div>
 

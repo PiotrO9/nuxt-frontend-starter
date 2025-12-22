@@ -1,5 +1,3 @@
-import { isEnterOrSpaceKey } from '~/utils/keyboard';
-
 export type KeyboardShortcutKey = 'Enter' | ' ' | 'Escape';
 
 export function useKeyboardShortcut(

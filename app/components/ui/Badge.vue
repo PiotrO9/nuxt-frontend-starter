@@ -7,10 +7,12 @@ export type BadgeVariant =
     | 'danger'
     | 'info';
 
+export type BadgeSize = 'sm' | 'md' | 'lg';
+
 interface Props {
     ariaLabel?: string;
     variant?: BadgeVariant;
-    size?: 'sm' | 'md' | 'lg';
+    size?: BadgeSize;
 }
 
 const props = withDefaults(defineProps<Props>(), {

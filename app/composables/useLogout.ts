@@ -16,8 +16,8 @@ export function useLogout() {
 
         if (shouldShowToast) {
             addToast({
-                title: 'Wylogowano',
-                description: `Do zobaczenia, ${userName}!`,
+                title: 'Logged out',
+                description: `See you later, ${userName}!`,
                 variant: 'success',
             });
         }

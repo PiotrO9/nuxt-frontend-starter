@@ -11,7 +11,7 @@ const { isDark, toggleDarkMode } = useDarkMode();
 const { handleLogout } = useLogout();
 
 const switchAriaLabel = computed(() =>
-    isDark.value ? 'Przełącz na tryb jasny' : 'Przełącz na tryb ciemny',
+    isDark.value ? 'Switch to light mode' : 'Switch to dark mode',
 );
 
 const navLinks = computed<NavLink[]>(() => [
@@ -89,22 +89,22 @@ function handleToggleDarkMode() {
                     right-icon-class="text-secondary-600 dark:text-secondary-300"
                     @update:checked="handleToggleDarkMode"
                 />
-                <Button
+                <Action
                     v-if="isAuthenticated"
                     variant="secondary"
                     aria-label="Log out"
                     @click="handleLogout"
                 >
                     Log out
-                </Button>
-                <Button
+                </Action>
+                <Action
                     v-else
                     variant="secondary"
                     aria-label="Go to login"
                     @click="handleGoToLogin"
                 >
                     Log in
-                </Button>
+                </Action>
             </div>
         </div>
     </header>

@@ -3,8 +3,10 @@ import { isEnterOrSpaceKey } from '../keyboard';
 
 describe('isEnterOrSpaceKey', () => {
     it('powinien zwrócić false dla pustego eventu', () => {
-        expect(isEnterOrSpaceKey(null as any)).toBe(false);
-        expect(isEnterOrSpaceKey(undefined as any)).toBe(false);
+        expect(isEnterOrSpaceKey(null as unknown as KeyboardEvent)).toBe(false);
+        expect(isEnterOrSpaceKey(undefined as unknown as KeyboardEvent)).toBe(
+            false,
+        );
     });
 
     it('powinien zwrócić true dla klawisza Enter', () => {

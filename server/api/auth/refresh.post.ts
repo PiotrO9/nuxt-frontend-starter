@@ -58,7 +58,7 @@ export default defineEventHandler(async (event) => {
         return {
             accessToken,
         };
-    } catch (err) {
+    } catch {
         deleteCookie(event, 'access_token');
         deleteCookie(event, 'refresh_token');
 

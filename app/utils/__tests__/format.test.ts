@@ -4,8 +4,8 @@ import { formatDate } from '../date';
 describe('formatDate (format.ts)', () => {
     it('powinien zwrócić pusty string dla pustego inputu', () => {
         expect(formatDate('')).toBe('');
-        expect(formatDate(null as any)).toBe('');
-        expect(formatDate(undefined as any)).toBe('');
+        expect(formatDate(null as unknown as Date)).toBe('');
+        expect(formatDate(undefined as unknown as Date)).toBe('');
     });
 
     it('powinien zwrócić pusty string dla nieprawidłowej daty', () => {

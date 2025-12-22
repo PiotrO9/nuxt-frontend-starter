@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { isEnterOrSpaceKey } from '~/utils/keyboard';
-
 interface Props {
     checked: boolean;
     ariaLabel: string;

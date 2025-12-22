@@ -10,7 +10,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    ariaLabel: 'Ładowanie...',
+    ariaLabel: 'Loading...',
     size: 'md',
     variant: 'primary',
     fullScreen: false,

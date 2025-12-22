@@ -139,7 +139,7 @@ export function useApi<T = unknown>(
                         navigateTo('/login');
                         error.value = createApiError(
                             retryErr,
-                            'Wystąpił nieoczekiwany błąd',
+                            'An unexpected error occurred',
                         );
 
                         return null;
@@ -147,13 +147,13 @@ export function useApi<T = unknown>(
                 } else {
                     await logout();
                     navigateTo('/login');
-                    error.value = new Error('Sesja wygasła');
+                    error.value = new Error('Session expired');
 
                     return null;
                 }
             }
 
-            error.value = createApiError(err, 'Wystąpił nieoczekiwany błąd');
+            error.value = createApiError(err, 'An unexpected error occurred');
 
             return null;
         } finally {

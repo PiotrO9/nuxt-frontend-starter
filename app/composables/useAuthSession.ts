@@ -1,5 +1,3 @@
-import { decodeJwt, isTokenExpired, type JwtPayload } from '~/utils/jwt';
-
 export interface AuthSession {
     token: string;
     userName: string;
@@ -103,7 +101,7 @@ export function useAuthSession() {
 
     async function login(email: string, password: string): Promise<void> {
         if (!email || !password) {
-            throw new Error('Email i hasło są wymagane');
+            throw new Error('Email and password are required');
         }
 
         const response = await $fetch<LoginResponse>(`${apiBase}/auth/login`, {
@@ -163,7 +161,8 @@ export function useAuthSession() {
                         'Content-Type': 'application/json',
                     },
                 });
-            } catch {
+            } catch (error) {
+                console.error(error);
             }
         }
 

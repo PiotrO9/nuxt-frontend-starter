@@ -8,7 +8,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    ariaLabel: 'Ładowanie...',
+    ariaLabel: 'Loading...',
     width: '100%',
     height: '1rem',
     rounded: 'md',

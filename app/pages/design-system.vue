@@ -1,7 +1,4 @@
 ﻿<script setup lang="ts">
-import type { ToastVariant } from '~/composables/useToast';
-import { isEnterOrSpaceKey } from '~/utils/keyboard';
-
 interface ColorSwatch {
     name: string;
     className: string;
@@ -158,7 +155,8 @@ async function copyTextToClipboard(text: string): Promise<boolean> {
 
             return true;
         }
-    } catch {
+    } catch (error) {
+        console.error(error);
     }
 
     try {
@@ -470,17 +468,17 @@ function handleDialogCancel() {
                             <p
                                 class="text-sm font-semibold text-slate-900 dark:text-slate-50"
                             >
-                                Różne tagi
+                                Different tags
                             </p>
                             <div class="flex flex-wrap gap-3">
                                 <Action
-                                    aria-label="Action jako button"
+                                    aria-label="Action as button"
                                     tag="button"
                                 >
                                     Button
                                 </Action>
                                 <Action
-                                    aria-label="Action jako link"
+                                    aria-label="Action as link"
                                     tag="a"
                                     href="#"
                                     variant="secondary"
@@ -488,7 +486,7 @@ function handleDialogCancel() {
                                     Link
                                 </Action>
                                 <Action
-                                    aria-label="Action jako div"
+                                    aria-label="Action as div"
                                     tag="div"
                                     variant="secondary"
                                 >
@@ -634,7 +632,7 @@ function handleDialogCancel() {
                             <p
                                 class="text-sm font-semibold text-slate-900 dark:text-slate-50"
                             >
-                                Warianty
+                                Variants
                             </p>
                             <div class="flex flex-wrap items-center gap-3">
                                 <Badge variant="primary">Primary</Badge>
@@ -650,14 +648,14 @@ function handleDialogCancel() {
                             <p
                                 class="text-sm font-semibold text-slate-900 dark:text-slate-50"
                             >
-                                Rozmiary
+                                Sizes
                             </p>
                             <div class="flex flex-wrap items-center gap-3">
-                                <Badge size="sm" variant="primary">Mały</Badge>
+                                <Badge size="sm" variant="primary">Small</Badge>
                                 <Badge size="md" variant="primary"
-                                    >Średni</Badge
+                                    >Medium</Badge
                                 >
-                                <Badge size="lg" variant="primary">Duży</Badge>
+                                <Badge size="lg" variant="primary">Large</Badge>
                             </div>
                         </div>
                     </div>
@@ -677,7 +675,7 @@ function handleDialogCancel() {
                             <p
                                 class="text-sm font-semibold text-slate-900 dark:text-slate-50"
                             >
-                                Warianty
+                                Variants
                             </p>
                             <div class="space-y-2">
                                 <Skeleton variant="pulse" />
@@ -690,7 +688,7 @@ function handleDialogCancel() {
                             <p
                                 class="text-sm font-semibold text-slate-900 dark:text-slate-50"
                             >
-                                Różne kształty
+                                Different shapes
                             </p>
                             <div class="space-y-2">
                                 <Skeleton
@@ -725,7 +723,7 @@ function handleDialogCancel() {
                             <p
                                 class="text-sm font-semibold text-slate-900 dark:text-slate-50"
                             >
-                                Przykład karty
+                                Card example
                             </p>
                             <div
                                 class="space-y-3 rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900"
@@ -765,35 +763,35 @@ function handleDialogCancel() {
                             <p
                                 class="text-sm font-semibold text-slate-900 dark:text-slate-50"
                             >
-                                Rozmiary
+                                Sizes
                             </p>
                             <div class="flex flex-wrap items-center gap-6">
                                 <div class="flex flex-col items-center gap-2">
                                     <Spinner size="sm" />
                                     <span
                                         class="text-xs text-slate-600 dark:text-slate-400"
-                                        >Mały</span
+                                        >Small</span
                                     >
                                 </div>
                                 <div class="flex flex-col items-center gap-2">
                                     <Spinner size="md" />
                                     <span
                                         class="text-xs text-slate-600 dark:text-slate-400"
-                                        >Średni</span
+                                        >Medium</span
                                     >
                                 </div>
                                 <div class="flex flex-col items-center gap-2">
                                     <Spinner size="lg" />
                                     <span
                                         class="text-xs text-slate-600 dark:text-slate-400"
-                                        >Duży</span
+                                        >Large</span
                                     >
                                 </div>
                                 <div class="flex flex-col items-center gap-2">
                                     <Spinner size="xl" />
                                     <span
                                         class="text-xs text-slate-600 dark:text-slate-400"
-                                        >Bardzo duży</span
+                                        >Extra large</span
                                     >
                                 </div>
                             </div>
@@ -803,7 +801,7 @@ function handleDialogCancel() {
                             <p
                                 class="text-sm font-semibold text-slate-900 dark:text-slate-50"
                             >
-                                Warianty
+                                Variants
                             </p>
                             <div class="flex flex-wrap items-center gap-6">
                                 <div class="flex flex-col items-center gap-2">
@@ -847,16 +845,16 @@ function handleDialogCancel() {
 
                     <div class="space-y-6">
                         <p class="text-sm text-slate-600 dark:text-slate-400">
-                            Zaawansowany loader z animacjami SVG, idealny do
-                            wyświetlania podczas ładowania modułów lub większych
-                            sekcji aplikacji.
+                            Advanced loader with SVG animations, ideal for
+                            displaying during module loading or larger sections
+                            of the application.
                         </p>
 
                         <div class="space-y-3">
                             <p
                                 class="text-sm font-semibold text-slate-900 dark:text-slate-50"
                             >
-                                Warianty animacji
+                                Animation variants
                             </p>
                             <div class="grid grid-cols-2 gap-6 md:grid-cols-3">
                                 <div class="flex flex-col items-center gap-2">
@@ -908,35 +906,35 @@ function handleDialogCancel() {
                             <p
                                 class="text-sm font-semibold text-slate-900 dark:text-slate-50"
                             >
-                                Rozmiary
+                                Sizes
                             </p>
                             <div class="flex flex-wrap items-center gap-6">
                                 <div class="flex flex-col items-center gap-2">
                                     <Loader variant="circles" size="sm" />
                                     <span
                                         class="text-xs text-slate-600 dark:text-slate-400"
-                                        >Mały</span
+                                        >Small</span
                                     >
                                 </div>
                                 <div class="flex flex-col items-center gap-2">
                                     <Loader variant="circles" size="md" />
                                     <span
                                         class="text-xs text-slate-600 dark:text-slate-400"
-                                        >Średni</span
+                                        >Medium</span
                                     >
                                 </div>
                                 <div class="flex flex-col items-center gap-2">
                                     <Loader variant="circles" size="lg" />
                                     <span
                                         class="text-xs text-slate-600 dark:text-slate-400"
-                                        >Duży</span
+                                        >Large</span
                                     >
                                 </div>
                                 <div class="flex flex-col items-center gap-2">
                                     <Loader variant="circles" size="xl" />
                                     <span
                                         class="text-xs text-slate-600 dark:text-slate-400"
-                                        >Bardzo duży</span
+                                        >Extra large</span
                                     >
                                 </div>
                             </div>
@@ -952,12 +950,12 @@ function handleDialogCancel() {
                                 <Loader
                                     variant="circles"
                                     size="lg"
-                                    text="Ładowanie danych..."
+                                    text="Loading data..."
                                 />
                                 <Loader
                                     variant="pulse"
                                     size="md"
-                                    text="Proszę czekać..."
+                                    text="Please wait..."
                                 />
                             </div>
                         </div>
@@ -966,7 +964,7 @@ function handleDialogCancel() {
                             <p
                                 class="text-sm font-semibold text-slate-900 dark:text-slate-50"
                             >
-                                Przykład użycia w sekcji
+                                Usage example in section
                             </p>
                             <div
                                 class="relative min-h-[200px] rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900"
@@ -974,7 +972,7 @@ function handleDialogCancel() {
                                 <Loader
                                     variant="orbit"
                                     size="lg"
-                                    text="Ładowanie modułu..."
+                                    text="Loading module..."
                                     :centered="true"
                                 />
                             </div>

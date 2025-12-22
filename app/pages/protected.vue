@@ -32,7 +32,7 @@ function handleGoHome() {
 
             <div class="space-y-2 text-sm">
                 <p class="text-slate-600 dark:text-slate-400">
-                    Zalogowany jako:
+                    Logged in as:
                     <span
                         class="font-semibold text-slate-900 dark:text-slate-50"
                         >{{ session?.userName }}</span
@@ -49,20 +49,20 @@ function handleGoHome() {
 
             <template #footer>
                 <div class="flex flex-wrap gap-2">
-                    <Button
+                    <Action
                         variant="secondary"
                         aria-label="Log out (demo)"
                         @click="handleLogout"
                     >
                         Log out
-                    </Button>
-                    <Button
+                    </Action>
+                    <Action
                         variant="ghost"
                         aria-label="Go back home"
                         @click="handleGoHome"
                     >
                         Home
-                    </Button>
+                    </Action>
                 </div>
             </template>
         </Card>

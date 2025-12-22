@@ -36,7 +36,7 @@ export default defineEventHandler(async (event) => {
                 email: user.email,
             },
         };
-    } catch (err) {
+    } catch {
         deleteCookie(event, 'access_token');
         deleteCookie(event, 'refresh_token');
 

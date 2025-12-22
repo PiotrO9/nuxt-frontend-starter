@@ -1,6 +1,5 @@
 ﻿<script setup lang="ts">
 import { z } from 'zod';
-import { isEnterOrSpaceKey } from '~/utils/keyboard';
 
 useHead({
     title: 'Login',
@@ -51,8 +50,8 @@ function resolveRedirectTarget(): string {
 async function handleLogin() {
     if (isAuthenticated.value) {
         addToast({
-            title: 'Już zalogowany',
-            description: 'Możesz kontynuować.',
+            title: 'Already logged in',
+            description: 'You can continue.',
             variant: 'info',
         });
         navigateTo(resolveRedirectTarget());
@@ -67,17 +66,16 @@ async function handleLogin() {
     try {
         await login(emailTrimmed.value, passwordTrimmed.value);
         addToast({
-            title: 'Zalogowano',
-            description: `Witaj, ${session.value?.userName || emailTrimmed.value}!`,
+            title: 'Logged in',
+            description: `Welcome, ${session.value?.userName || emailTrimmed.value}!`,
             variant: 'success',
         });
         navigateTo(resolveRedirectTarget());
     } catch (err) {
-        const errorMessage =
-            err instanceof Error ? err.message : 'Błąd podczas logowania';
+        const errorMessage = err instanceof Error ? err.message : 'Login error';
 
         addToast({
-            title: 'Błąd logowania',
+            title: 'Login error',
             description: errorMessage,
             variant: 'error',
         });
@@ -95,15 +93,19 @@ function handleKeyDown(event: KeyboardEvent) {
 function handleGoHome() {
     navigateTo('/');
 }
+
+function handleLogoutClick() {
+    handleLogout();
+}
 </script>
 
 <template>
     <div class="mx-auto w-full max-w-xl space-y-6">
         <div class="space-y-2">
-            <h1 class="text-2xl font-extrabold tracking-tight">Logowanie</h1>
+            <h1 class="text-2xl font-extrabold tracking-tight">Login</h1>
             <p class="text-slate-700 dark:text-slate-300">
-                Zaloguj się używając email i hasła. Tokeny JWT są przechowywane
-                w bezpiecznych HTTP-only cookies.
+                Log in using email and password. JWT tokens are stored in secure
+                HTTP-only cookies.
             </p>
         </div>
 
@@ -112,7 +114,7 @@ function handleGoHome() {
                 <p
                     class="text-sm font-semibold text-slate-900 dark:text-slate-50"
                 >
-                    Sesja
+                    Session
                 </p>
             </template>
 
@@ -124,8 +126,8 @@ function handleGoHome() {
                     >
                         {{
                             isAuthenticated
-                                ? `zalogowany jako ${session?.userName}`
-                                : 'wylogowany'
+                                ? `logged in as ${session?.userName}`
+                                : 'logged out'
                         }}
                     </span>
                 </p>
@@ -141,8 +143,8 @@ function handleGoHome() {
                             id="emailInput"
                             v-model="email"
                             type="email"
-                            placeholder="np. jan@example.com"
-                            aria-label="Wprowadź email"
+                            placeholder="e.g. john@example.com"
+                            aria-label="Enter email"
                             :is-disabled="isLoading"
                             @keydown="handleKeyDown"
                         />
@@ -152,14 +154,14 @@ function handleGoHome() {
                         <label
                             class="block text-sm font-medium text-slate-700 dark:text-slate-300"
                             for="passwordInput"
-                            >Hasło</label
+                            >Password</label
                         >
                         <Input
                             id="passwordInput"
                             v-model="password"
                             type="password"
-                            placeholder="Wprowadź hasło"
-                            aria-label="Wprowadź hasło"
+                            placeholder="Enter password"
+                            aria-label="Enter password"
                             :is-disabled="isLoading"
                             @keydown="handleKeyDown"
                         />
@@ -167,30 +169,31 @@ function handleGoHome() {
                 </div>
 
                 <div class="flex flex-wrap gap-2">
-                    <Button
+                    <Action
                         v-if="!isAuthenticated"
-                        aria-label="Zaloguj się"
+                        aria-label="Log in"
+                        :is-loading="isLoading"
                         :is-disabled="!isFormValid || isLoading"
                         @click="handleLogin"
                     >
-                        {{ isLoading ? 'Logowanie...' : 'Zaloguj się' }}
-                    </Button>
-                    <Button
+                        {{ isLoading ? 'Logging in...' : 'Log in' }}
+                    </Action>
+                    <Action
                         v-else
                         variant="secondary"
-                        aria-label="Wyloguj się"
-                        @click="handleLogout"
+                        aria-label="Log out"
+                        @click="handleLogoutClick"
                     >
-                        Wyloguj się
-                    </Button>
+                        Log out
+                    </Action>
 
-                    <Button
+                    <Action
                         variant="ghost"
-                        aria-label="Powrót do strony głównej"
+                        aria-label="Go back to home page"
                         @click="handleGoHome"
                     >
-                        Strona główna
-                    </Button>
+                        Home
+                    </Action>
                 </div>
             </div>
         </Card>

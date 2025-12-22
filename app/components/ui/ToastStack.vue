@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import { useToast } from '~/composables/useToast';
-import type { ToastVariant } from '~/composables/useToast';
-import { isEnterOrSpaceKey } from '~/utils/keyboard';
-
 const { toasts, removeToast } = useToast();
 
 interface ToastA11y {

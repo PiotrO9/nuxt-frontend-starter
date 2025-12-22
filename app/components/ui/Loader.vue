@@ -22,7 +22,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    ariaLabel: 'Ładowanie...',
+    ariaLabel: 'Loading...',
     variant: 'circles',
     size: 'lg',
     color: 'primary',

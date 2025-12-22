@@ -33,13 +33,13 @@ function handleGoToProtected() {
                 for a real project.
             </p>
             <div class="mt-6 flex flex-wrap gap-3">
-                <Button
+                <Action
                     variant="secondary"
                     aria-label="Go to protected page"
                     @click="handleGoToProtected"
                 >
                     Go to protected
-                </Button>
+                </Action>
             </div>
         </section>
 
