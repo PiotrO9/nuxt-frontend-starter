@@ -6,9 +6,9 @@ interface NavLink {
 }
 
 const route = useRoute();
-const { isAuthenticated, session, logout } = useAuthSession();
-const { addToast } = useToast();
+const { isAuthenticated } = useAuthSession();
 const { isDark, toggleDarkMode } = useDarkMode();
+const { handleLogout } = useLogout();
 
 const switchAriaLabel = computed(() =>
     isDark.value ? 'Przełącz na tryb jasny' : 'Przełącz na tryb ciemny',
@@ -36,17 +36,6 @@ function linkClass(to: string): string {
         return 'bg-secondary-100 text-secondary-900 dark:bg-secondary-800 dark:text-secondary-50';
 
     return 'text-secondary-700 hover:bg-secondary-100 hover:text-secondary-900 dark:text-secondary-300 dark:hover:bg-secondary-800 dark:hover:text-secondary-50';
-}
-
-async function handleLogout() {
-    const userName = session.value?.userName || 'User';
-
-    await logout();
-    addToast({
-        title: 'Wylogowano',
-        description: `Do zobaczenia, ${userName}!`,
-        variant: 'success',
-    });
 }
 
 function handleGoToLogin() {

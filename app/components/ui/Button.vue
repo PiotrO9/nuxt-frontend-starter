@@ -61,7 +61,7 @@ function handleClick(event: MouseEvent) {
     >
         <span v-if="isLoading" class="inline-flex items-center gap-2">
             <span
-                class="h-4 w-4 animate-spin rounded-full border-2 border-current border-r-transparent"
+                class="size-4 animate-spin rounded-full border-2 border-current border-r-transparent"
                 aria-hidden="true"
             />
             <span class="text-sm font-medium">Loading…</span>

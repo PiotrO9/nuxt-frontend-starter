@@ -159,7 +159,6 @@ async function copyTextToClipboard(text: string): Promise<boolean> {
             return true;
         }
     } catch {
-        // fallback below
     }
 
     try {
@@ -414,7 +413,7 @@ function handleDialogCancel() {
                                 >
                                     <Icon
                                         name="heroicons:plus"
-                                        class="h-5 w-5"
+                                        class="size-5"
                                         aria-hidden="true"
                                     />
                                 </Action>
@@ -425,7 +424,7 @@ function handleDialogCancel() {
                                 >
                                     <Icon
                                         name="heroicons:plus"
-                                        class="h-5 w-5"
+                                        class="size-5"
                                         aria-hidden="true"
                                     />
                                 </Action>
@@ -436,7 +435,7 @@ function handleDialogCancel() {
                                 >
                                     <Icon
                                         name="heroicons:plus"
-                                        class="h-5 w-5"
+                                        class="size-5"
                                         aria-hidden="true"
                                     />
                                 </Action>
@@ -447,7 +446,7 @@ function handleDialogCancel() {
                                 >
                                     <Icon
                                         name="heroicons:plus"
-                                        class="h-5 w-5"
+                                        class="size-5"
                                         aria-hidden="true"
                                     />
                                 </Action>

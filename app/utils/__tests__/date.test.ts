@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { formatDate } from '../date';
 
-describe('formatDate (date.ts)', () => {
+describe('formatDate (date.ts) - relative variant', () => {
     beforeEach(() => {
         vi.useFakeTimers();
     });
@@ -11,7 +11,7 @@ describe('formatDate (date.ts)', () => {
     });
 
     it('powinien zwrócić pusty string dla pustego inputu', () => {
-        expect(formatDate('')).toBe('');
+        expect(formatDate('', 'relative')).toBe('');
     });
 
     it('powinien zwrócić "Now" dla daty sprzed mniej niż minuty', () => {
@@ -20,7 +20,7 @@ describe('formatDate (date.ts)', () => {
         vi.setSystemTime(now);
         const dateString = new Date('2024-01-01T12:00:00Z').toISOString();
 
-        expect(formatDate(dateString)).toBe('Now');
+        expect(formatDate(dateString, 'relative')).toBe('Now');
     });
 
     it('powinien zwrócić "X min ago" dla daty sprzed mniej niż godziny', () => {
@@ -29,7 +29,7 @@ describe('formatDate (date.ts)', () => {
         vi.setSystemTime(now);
         const dateString = new Date('2024-01-01T12:00:00Z').toISOString();
 
-        expect(formatDate(dateString)).toBe('30 min ago');
+        expect(formatDate(dateString, 'relative')).toBe('30 min ago');
     });
 
     it('powinien zwrócić "X hrs ago" dla daty sprzed mniej niż dnia', () => {
@@ -38,7 +38,7 @@ describe('formatDate (date.ts)', () => {
         vi.setSystemTime(now);
         const dateString = new Date('2024-01-01T12:00:00Z').toISOString();
 
-        expect(formatDate(dateString)).toBe('3 hrs ago');
+        expect(formatDate(dateString, 'relative')).toBe('3 hrs ago');
     });
 
     it('powinien zwrócić sformatowaną datę dla daty starszej niż dzień', () => {
@@ -46,7 +46,7 @@ describe('formatDate (date.ts)', () => {
 
         vi.setSystemTime(now);
         const dateString = new Date('2024-01-01T12:00:00Z').toISOString();
-        const result = formatDate(dateString);
+        const result = formatDate(dateString, 'relative');
 
         expect(result).toMatch(/Jan/);
         expect(result).toMatch(/1/);
@@ -57,7 +57,7 @@ describe('formatDate (date.ts)', () => {
 
         vi.setSystemTime(now);
         const dateString = new Date('2023-01-01T12:00:00Z').toISOString();
-        const result = formatDate(dateString);
+        const result = formatDate(dateString, 'relative');
 
         expect(result).toMatch(/2023/);
     });

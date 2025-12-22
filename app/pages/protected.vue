@@ -3,18 +3,8 @@ definePageMeta({
     middleware: ['auth'],
 });
 
-const { addToast } = useToast();
-const { session, logout } = useAuthSession();
-
-async function handleLogout() {
-    await logout();
-    addToast({
-        title: 'Wylogowano',
-        description: 'Sesja została zakończona.',
-        variant: 'success',
-    });
-    navigateTo('/login');
-}
+const { session } = useAuthSession();
+const { handleLogout } = useLogout();
 
 function handleGoHome() {
     navigateTo('/');

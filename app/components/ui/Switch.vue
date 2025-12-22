@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { isEnterOrSpaceKey } from '~/utils/keyboard';
+
 interface Props {
     checked: boolean;
     ariaLabel: string;
@@ -46,7 +48,7 @@ function handleClick() {
 function handleKeyDown(event: KeyboardEvent) {
     if (props.isDisabled) return;
 
-    if (event.key !== 'Enter' && event.key !== ' ') return;
+    if (!isEnterOrSpaceKey(event)) return;
 
     event.preventDefault();
     handleClick();
@@ -68,7 +70,7 @@ function handleKeyDown(event: KeyboardEvent) {
         <Icon
             v-if="props.leftIcon"
             :name="props.leftIcon"
-            class="absolute left-1.5 h-4 w-4 transition-opacity duration-300"
+            class="absolute left-1.5 size-4 transition-opacity duration-300"
             :class="[
                 props.checked ? 'opacity-40' : 'opacity-100',
                 props.leftIconClass,
@@ -78,7 +80,7 @@ function handleKeyDown(event: KeyboardEvent) {
         <Icon
             v-if="props.rightIcon"
             :name="props.rightIcon"
-            class="absolute right-1.5 h-4 w-4 transition-opacity duration-300"
+            class="absolute right-1.5 size-4 transition-opacity duration-300"
             :class="[
                 props.checked ? 'opacity-100' : 'opacity-40',
                 props.rightIconClass,
@@ -86,7 +88,7 @@ function handleKeyDown(event: KeyboardEvent) {
             aria-hidden="true"
         />
         <span
-            class="absolute flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300"
+            class="absolute flex size-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300"
             :class="props.checked ? 'translate-x-6' : 'translate-x-0'"
             aria-hidden="true"
         />

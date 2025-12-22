@@ -30,6 +30,31 @@ interface MeResponse {
     accessToken?: string;
 }
 
+function createSessionFromResponse(
+    user: { id: string; userName: string; email: string },
+    accessToken?: string,
+): AuthSession {
+    if (accessToken) {
+        const decoded = decodeJwt(accessToken) as JwtPayload;
+        const expiresAt = decoded.exp ? decoded.exp * 1000 : undefined;
+
+        return {
+            token: accessToken,
+            userName: user.userName,
+            userId: user.id,
+            email: user.email,
+            expiresAt,
+        };
+    }
+
+    return {
+        token: 'valid',
+        userName: user.userName,
+        userId: user.id,
+        email: user.email,
+    };
+}
+
 export function useAuthSession() {
     const config = useRuntimeConfig();
     const apiBase = config.public.apiBase || '/api';
@@ -61,25 +86,10 @@ export function useAuthSession() {
                 },
             });
 
-            if (response.accessToken) {
-                const decoded = decodeJwt(response.accessToken) as JwtPayload;
-                const expiresAt = decoded.exp ? decoded.exp * 1000 : undefined;
-
-                session.value = {
-                    token: response.accessToken,
-                    userName: response.user.userName,
-                    userId: response.user.id,
-                    email: response.user.email,
-                    expiresAt,
-                };
-            } else {
-                session.value = {
-                    token: 'valid',
-                    userName: response.user.userName,
-                    userId: response.user.id,
-                    email: response.user.email,
-                };
-            }
+            session.value = createSessionFromResponse(
+                response.user,
+                response.accessToken,
+            );
 
             return true;
         } catch {
@@ -105,16 +115,10 @@ export function useAuthSession() {
             },
         });
 
-        const decoded = decodeJwt(response.accessToken) as JwtPayload;
-        const expiresAt = decoded.exp ? decoded.exp * 1000 : undefined;
-
-        session.value = {
-            token: response.accessToken,
-            userName: response.user.userName,
-            userId: response.user.id,
-            email: response.user.email,
-            expiresAt,
-        };
+        session.value = createSessionFromResponse(
+            response.user,
+            response.accessToken,
+        );
     }
 
     async function refreshAccessToken(): Promise<boolean> {
@@ -133,11 +137,13 @@ export function useAuthSession() {
             const decoded = decodeJwt(response.accessToken) as JwtPayload;
             const expiresAt = decoded.exp ? decoded.exp * 1000 : undefined;
 
-            session.value = {
-                ...session.value!,
-                token: response.accessToken,
-                expiresAt,
-            };
+            if (session.value) {
+                session.value = {
+                    ...session.value,
+                    token: response.accessToken,
+                    expiresAt,
+                };
+            }
 
             return true;
         } catch {
@@ -158,7 +164,6 @@ export function useAuthSession() {
                     },
                 });
             } catch {
-                // Ignoruj błędy przy logout
             }
         }
 

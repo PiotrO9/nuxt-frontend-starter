@@ -1,11 +1,17 @@
 ﻿<script setup lang="ts">
+import { z } from 'zod';
+import { isEnterOrSpaceKey } from '~/utils/keyboard';
+
 useHead({
     title: 'Login',
 });
 
 const route = useRoute();
 const { addToast } = useToast();
-const { isAuthenticated, session, login, logout } = useAuthSession();
+const { isAuthenticated, session, login } = useAuthSession();
+const { handleLogout } = useLogout();
+
+const redirectQuerySchema = z.string().min(1).optional();
 
 const email = ref('');
 const password = ref('');
@@ -22,9 +28,24 @@ function resolveRedirectTarget(): string {
 
     if (!redirectQuery) return '/protected';
 
-    if (Array.isArray(redirectQuery)) return redirectQuery[0] || '/protected';
+    if (Array.isArray(redirectQuery)) {
+        const firstQuery = redirectQuery[0];
+        const result = redirectQuerySchema.safeParse(firstQuery);
 
-    return redirectQuery;
+        if (result.success && result.data) {
+            return result.data;
+        }
+
+        return '/protected';
+    }
+
+    const result = redirectQuerySchema.safeParse(redirectQuery);
+
+    if (result.success && result.data) {
+        return result.data;
+    }
+
+    return '/protected';
 }
 
 async function handleLogin() {
@@ -66,20 +87,9 @@ async function handleLogin() {
 }
 
 function handleKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
+    if (isEnterOrSpaceKey(event)) {
         handleLogin();
     }
-}
-
-function handleLogout() {
-    const name = session.value?.userName || 'User';
-
-    logout();
-    addToast({
-        title: 'Wylogowano',
-        description: `Do zobaczenia, ${name}!`,
-        variant: 'success',
-    });
 }
 
 function handleGoHome() {
@@ -127,14 +137,13 @@ function handleGoHome() {
                             for="emailInput"
                             >Email</label
                         >
-                        <input
+                        <Input
                             id="emailInput"
                             v-model="email"
                             type="email"
-                            class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2 text-slate-900 placeholder:text-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-800 dark:text-slate-50 dark:placeholder:text-slate-500 dark:focus-visible:ring-offset-slate-950"
                             placeholder="np. jan@example.com"
                             aria-label="Wprowadź email"
-                            :disabled="isLoading"
+                            :is-disabled="isLoading"
                             @keydown="handleKeyDown"
                         />
                     </div>
@@ -145,14 +154,13 @@ function handleGoHome() {
                             for="passwordInput"
                             >Hasło</label
                         >
-                        <input
+                        <Input
                             id="passwordInput"
                             v-model="password"
                             type="password"
-                            class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2 text-slate-900 placeholder:text-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-800 dark:text-slate-50 dark:placeholder:text-slate-500 dark:focus-visible:ring-offset-slate-950"
                             placeholder="Wprowadź hasło"
                             aria-label="Wprowadź hasło"
-                            :disabled="isLoading"
+                            :is-disabled="isLoading"
                             @keydown="handleKeyDown"
                         />
                     </div>

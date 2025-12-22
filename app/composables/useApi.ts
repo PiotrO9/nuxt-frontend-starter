@@ -13,6 +13,19 @@ export interface ApiResponse<T = unknown> {
     execute: () => Promise<T | null>;
 }
 
+export interface ApiError extends Error {
+    statusCode?: number;
+    data?: unknown;
+}
+
+function isApiError(err: unknown): err is ApiError {
+    return (
+        err !== null &&
+        typeof err === 'object' &&
+        ('statusCode' in err || err instanceof Error)
+    );
+}
+
 export function useApi<T = unknown>(
     method: Method,
     url: string | (() => string),
@@ -43,6 +56,47 @@ export function useApi<T = unknown>(
         return `${baseUrl}${cleanPath}`;
     }
 
+    function buildFetchOptions(path: string): {
+        endpoint: string;
+        fetchOptions: Parameters<typeof $fetch>[1];
+    } {
+        const endpoint = buildUrl(path);
+
+        const headers: Record<string, string> = {
+            'Content-Type': 'application/json',
+            ...options.headers,
+        };
+
+        const fetchOptions: Parameters<typeof $fetch>[1] = {
+            method,
+            credentials: 'include',
+            headers,
+        };
+
+        if (method !== 'GET' && options.body) {
+            fetchOptions.body = options.body as BodyInit;
+        }
+
+        return { endpoint, fetchOptions };
+    }
+
+    function createApiError(err: unknown, defaultMessage: string): Error {
+        if (err instanceof Error) {
+            return err;
+        }
+
+        if (isApiError(err)) {
+            const error = new Error(defaultMessage) as ApiError;
+
+            error.statusCode = err.statusCode;
+            error.data = err.data;
+
+            return error;
+        }
+
+        return new Error(defaultMessage);
+    }
+
     async function execute(): Promise<T | null> {
         if (isLoading.value) return null;
 
@@ -56,56 +110,26 @@ export function useApi<T = unknown>(
                 throw new Error('URL is required');
             }
 
-            const endpoint = buildUrl(path);
-
-            const headers: Record<string, string> = {
-                'Content-Type': 'application/json',
-                ...options.headers,
-            };
-
-            const response = await $fetch<T>(endpoint, {
-                method,
-                credentials: 'include',
-                body:
-                    method !== 'GET' && options.body
-                        ? (options.body as BodyInit)
-                        : undefined,
-                headers,
-            });
+            const { endpoint, fetchOptions } = buildFetchOptions(path);
+            const response = await $fetch<T>(endpoint, fetchOptions);
 
             data.value = response;
 
             return response;
         } catch (err: unknown) {
-            if (
-                !skipAuth &&
-                err &&
-                typeof err === 'object' &&
-                'statusCode' in err &&
-                err.statusCode === 401
-            ) {
+            if (!skipAuth && isApiError(err) && err.statusCode === 401) {
                 const { refreshAccessToken, logout } = useAuthSession();
                 const refreshed = await refreshAccessToken();
 
                 if (refreshed) {
                     try {
                         const path = typeof url === 'function' ? url() : url;
-                        const endpoint = buildUrl(path);
-
-                        const retryHeaders: Record<string, string> = {
-                            'Content-Type': 'application/json',
-                            ...options.headers,
-                        };
-
-                        const retryResponse = await $fetch<T>(endpoint, {
-                            method,
-                            credentials: 'include',
-                            body:
-                                method !== 'GET' && options.body
-                                    ? (options.body as BodyInit)
-                                    : undefined,
-                            headers: retryHeaders,
-                        });
+                        const { endpoint, fetchOptions } =
+                            buildFetchOptions(path);
+                        const retryResponse = await $fetch<T>(
+                            endpoint,
+                            fetchOptions,
+                        );
 
                         data.value = retryResponse;
 
@@ -113,32 +137,23 @@ export function useApi<T = unknown>(
                     } catch (retryErr) {
                         await logout();
                         navigateTo('/login');
-                        const apiError =
-                            retryErr instanceof Error
-                                ? retryErr
-                                : new Error('Wystąpił nieoczekiwany błąd');
-
-                        error.value = apiError;
+                        error.value = createApiError(
+                            retryErr,
+                            'Wystąpił nieoczekiwany błąd',
+                        );
 
                         return null;
                     }
                 } else {
                     await logout();
                     navigateTo('/login');
-                    const apiError = new Error('Sesja wygasła');
-
-                    error.value = apiError;
+                    error.value = new Error('Sesja wygasła');
 
                     return null;
                 }
             }
 
-            const apiError =
-                err instanceof Error
-                    ? err
-                    : new Error('Wystąpił nieoczekiwany błąd');
-
-            error.value = apiError;
+            error.value = createApiError(err, 'Wystąpił nieoczekiwany błąd');
 
             return null;
         } finally {

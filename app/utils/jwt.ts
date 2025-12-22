@@ -15,7 +15,9 @@ export function decodeJwt(token: string): JwtPayload | null {
         if (parts.length !== 3) return null;
 
         const base64Url = parts[1];
-        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const base64 = base64Url?.replace(/-/g, '+').replace(/_/g, '/');
+
+        if (!base64) return null;
 
         let jsonPayload: string;
 

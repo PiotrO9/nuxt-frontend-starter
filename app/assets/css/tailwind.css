@@ -2,7 +2,6 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    /* Kolory podstawowe - Primary */
     --color-primary: #0ea5e9;
     --color-primary-50: #f0f9ff;
     --color-primary-100: #e0f2fe;
@@ -16,7 +15,6 @@
     --color-primary-900: #0c4a6e;
     --color-primary-950: #082f49;
 
-    /* Kolory podstawowe - Secondary */
     --color-secondary: #475569;
     --color-secondary-50: #f8fafc;
     --color-secondary-100: #f1f5f9;
@@ -30,7 +28,6 @@
     --color-secondary-900: #0f172a;
     --color-secondary-950: #020617;
 
-    /* Kolory semantyczne - Success */
     --color-success: #10b981;
     --color-success-50: #ecfdf5;
     --color-success-100: #d1fae5;
@@ -44,7 +41,6 @@
     --color-success-900: #064e3b;
     --color-success-950: #022c22;
 
-    /* Kolory semantyczne - Warning */
     --color-warning: #f59e0b;
     --color-warning-50: #fffbeb;
     --color-warning-100: #fef3c7;
@@ -58,7 +54,6 @@
     --color-warning-900: #78350f;
     --color-warning-950: #451a03;
 
-    /* Kolory semantyczne - Danger */
     --color-danger: #ef4444;
     --color-danger-50: #fef2f2;
     --color-danger-100: #ffe4e6;
@@ -72,7 +67,6 @@
     --color-danger-900: #991b1b;
     --color-danger-950: #7f1d1d;
 
-    /* Kolory semantyczne - Info */
     --color-info: #3b82f6;
     --color-info-50: #eff6ff;
     --color-info-100: #dbeafe;

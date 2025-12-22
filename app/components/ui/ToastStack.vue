@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useToast } from '~/composables/useToast';
 import type { ToastVariant } from '~/composables/useToast';
+import { isEnterOrSpaceKey } from '~/utils/keyboard';
 
 const { toasts, removeToast } = useToast();
 
@@ -95,10 +96,7 @@ function handleClose(toastId: string) {
 function handleCloseKeyDown(event: KeyboardEvent, toastId: string) {
     if (!event) return;
 
-    const isEnter = event.key === 'Enter';
-    const isSpace = event.key === ' ';
-
-    if (!isEnter && !isSpace) return;
+    if (!isEnterOrSpaceKey(event)) return;
 
     event.preventDefault();
     handleClose(toastId);
@@ -133,14 +131,14 @@ function handleCloseKeyDown(event: KeyboardEvent, toastId: string) {
                 <div class="flex items-start justify-between gap-3">
                     <div class="flex min-w-0 items-start gap-3">
                         <div
-                            class="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl"
+                            class="mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-xl"
                             :class="getToastUi(toast.variant).iconWrapperClass"
                             aria-hidden="true"
                         >
                             <Icon
                                 :name="getToastIcon(toast.variant)"
                                 :class="[
-                                    'h-5 w-5',
+                                    'size-5',
                                     getToastUi(toast.variant).iconClass,
                                 ]"
                                 aria-hidden="true"
@@ -163,7 +161,7 @@ function handleCloseKeyDown(event: KeyboardEvent, toastId: string) {
                     <button
                         type="button"
                         tabindex="0"
-                        class="group relative inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 motion-reduce:transition-none"
+                        class="group relative inline-flex size-8 shrink-0 items-center justify-center rounded-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 motion-reduce:transition-none"
                         :class="[
                             getToastUi(toast.variant).closeButtonClass,
                             getToastUi(toast.variant).closeRingClass,
@@ -174,7 +172,7 @@ function handleCloseKeyDown(event: KeyboardEvent, toastId: string) {
                     >
                         <Icon
                             name="heroicons:x-mark"
-                            class="h-4 w-4 transition-transform duration-200 group-hover:scale-110 group-active:scale-95 motion-reduce:transition-none"
+                            class="size-4 transition-transform duration-200 group-hover:scale-110 group-active:scale-95 motion-reduce:transition-none"
                             aria-hidden="true"
                         />
                     </button>
