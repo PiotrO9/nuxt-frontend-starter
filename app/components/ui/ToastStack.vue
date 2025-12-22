@@ -157,7 +157,7 @@ function handleCloseKeyDown(event: KeyboardEvent, toastId: string) {
                     <button
                         type="button"
                         tabindex="0"
-                        class="group relative inline-flex size-8 shrink-0 items-center justify-center rounded-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 motion-reduce:transition-none"
+                        class="group relative inline-flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 motion-reduce:transition-none"
                         :class="[
                             getToastUi(toast.variant).closeButtonClass,
                             getToastUi(toast.variant).closeRingClass,
