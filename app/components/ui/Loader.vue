@@ -296,7 +296,7 @@ const loaderClass = computed(() => {
     const base = 'flex flex-col items-center justify-center';
 
     if (props.fullScreen) {
-        return `${base} fixed inset-0 z-50 bg-white/90 dark:bg-slate-950/90 backdrop-blur-sm`;
+        return `${base} fixed inset-0 z-50 bg-white/90 dark:bg-secondary-950/90 backdrop-blur-sm`;
     }
 
     if (props.centered) {
@@ -319,8 +319,8 @@ const svgClass = computed(() => {
     };
 
     const colorClasses = {
-        primary: 'text-sky-500 dark:text-sky-400',
-        secondary: 'text-slate-600 dark:text-slate-400',
+        primary: 'text-primary-500 dark:text-primary-400',
+        secondary: 'text-secondary-600 dark:text-secondary-400',
         white: 'text-white',
     };
 
@@ -331,8 +331,8 @@ const textClass = computed(() => {
     const base = 'mt-4 text-sm font-medium';
 
     const colorClasses = {
-        primary: 'text-sky-600 dark:text-sky-400',
-        secondary: 'text-slate-600 dark:text-slate-400',
+        primary: 'text-primary-600 dark:text-primary-400',
+        secondary: 'text-secondary-600 dark:text-secondary-400',
         white: 'text-white',
     };
 

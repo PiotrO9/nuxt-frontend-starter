@@ -25,11 +25,11 @@ const emit = defineEmits<Emits>();
 
 const switchClass = computed(() => {
     const base =
-        'relative flex h-8 w-14 cursor-pointer items-center rounded-full px-1 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950 disabled:cursor-not-allowed disabled:opacity-60';
+        'relative flex h-8 w-14 cursor-pointer items-center rounded-full px-1 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-secondary-950 disabled:cursor-not-allowed disabled:opacity-60';
 
     const checkedClass = props.checked
-        ? 'bg-sky-500 dark:bg-sky-600'
-        : 'bg-slate-200 dark:bg-slate-700';
+        ? 'bg-primary-500 dark:bg-primary-600'
+        : 'bg-secondary-200 dark:bg-secondary-700';
 
     return `${base} ${checkedClass}`;
 });

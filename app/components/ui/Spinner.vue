@@ -52,7 +52,7 @@ const spinnerClass = computed(() => {
     const base = 'flex items-center justify-center';
 
     if (props.fullScreen) {
-        return `${base} fixed inset-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-sm`;
+        return `${base} fixed inset-0 z-50 bg-white/80 dark:bg-secondary-950/80 backdrop-blur-sm`;
     }
 
     return base;
@@ -67,8 +67,8 @@ const svgClass = computed(() => {
     };
 
     const variantClasses = {
-        primary: 'text-sky-500 dark:text-sky-400',
-        secondary: 'text-slate-600 dark:text-slate-400',
+        primary: 'text-primary-500 dark:text-primary-400',
+        secondary: 'text-secondary-600 dark:text-secondary-400',
         white: 'text-white',
     };
 

@@ -28,7 +28,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const skeletonClass = computed(() => {
-    const base = 'bg-slate-200 dark:bg-slate-800';
+    const base = 'bg-secondary-200 dark:bg-secondary-800';
 
     const roundedClasses = {
         none: 'rounded-none',
@@ -41,7 +41,7 @@ const skeletonClass = computed(() => {
     const variantClasses = {
         default: '',
         pulse: 'animate-pulse',
-        wave: 'animate-pulse bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200 dark:from-slate-800 dark:via-slate-700 dark:to-slate-800 bg-[length:200%_100%] animate-[wave_2s_ease-in-out_infinite]',
+        wave: 'animate-pulse bg-gradient-to-r from-secondary-200 via-secondary-300 to-secondary-200 dark:from-secondary-800 dark:via-secondary-700 dark:to-secondary-800 bg-[length:200%_100%] animate-[wave_2s_ease-in-out_infinite]',
     };
 
     return `${base} ${roundedClasses[props.rounded]} ${variantClasses[props.variant]}`;

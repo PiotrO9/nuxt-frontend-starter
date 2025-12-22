@@ -68,7 +68,7 @@ const emit = defineEmits<Emits>();
 const isDisabled = computed(() => props.isDisabled || props.isLoading);
 
 const baseClasses =
-    'inline-flex items-center justify-center text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950 disabled:cursor-not-allowed';
+    'inline-flex items-center justify-center text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-secondary-950 disabled:cursor-not-allowed';
 
 const shapeClasses = computed(() =>
     props.circle ? 'rounded-full w-10 h-10 p-0' : 'rounded-xl px-4 py-2',
@@ -77,24 +77,24 @@ const shapeClasses = computed(() =>
 const stateClasses = computed(() => {
     if (props.isLoading) {
         const loadingBase =
-            'cursor-wait border border-slate-200 dark:border-slate-700';
+            'cursor-wait border border-secondary-200 dark:border-secondary-700';
 
         if (props.variant === 'secondary') {
-            return `${loadingBase} bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-slate-50`;
+            return `${loadingBase} bg-secondary-100 text-secondary-900 dark:bg-secondary-800 dark:text-secondary-50`;
         }
 
-        return `${loadingBase} bg-sky-100 text-sky-600 border-sky-200 dark:bg-sky-950/40 dark:text-sky-300 dark:border-sky-800`;
+        return `${loadingBase} bg-primary-100 text-primary-600 border-primary-200 dark:bg-primary-950/40 dark:text-primary-300 dark:border-primary-800`;
     }
 
     if (props.isDisabled) {
-        return 'cursor-not-allowed bg-slate-100 text-slate-400 border border-slate-200 dark:bg-slate-800 dark:text-slate-500 dark:border-slate-700';
+        return 'cursor-not-allowed bg-secondary-100 text-secondary-400 border border-secondary-200 dark:bg-secondary-800 dark:text-secondary-500 dark:border-secondary-700';
     }
 
     if (props.variant === 'secondary') {
-        return 'cursor-pointer bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-700';
+        return 'cursor-pointer bg-secondary-100 text-secondary-900 hover:bg-secondary-200 dark:bg-secondary-800 dark:text-secondary-50 dark:hover:bg-secondary-700';
     }
 
-    return 'cursor-pointer bg-sky-500 text-slate-950 hover:bg-sky-400 dark:bg-sky-600 dark:text-white dark:hover:bg-sky-500';
+    return 'cursor-pointer bg-primary-500 text-secondary-950 hover:bg-primary-400 dark:bg-primary-600 dark:text-white dark:hover:bg-primary-500';
 });
 
 const actionClass = computed(

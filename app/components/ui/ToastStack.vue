@@ -22,14 +22,14 @@ function getToastUi(variant: ToastVariant): ToastUi {
     if (variant === 'success') {
         return {
             containerClass:
-                'border-emerald-600/60 bg-emerald-50/90 text-slate-900 dark:border-emerald-500/60 dark:bg-emerald-950/90 dark:text-emerald-50',
+                'border-success-600/60 bg-success-50/90 text-secondary-900 dark:border-success-500/60 dark:bg-success-950/90 dark:text-success-50',
             iconWrapperClass:
-                'bg-emerald-500/15 text-emerald-700 dark:bg-emerald-500/30 dark:text-emerald-300',
-            iconClass: 'text-emerald-700 dark:text-emerald-300',
+                'bg-success-500/15 text-success-700 dark:bg-success-500/30 dark:text-success-300',
+            iconClass: 'text-success-700 dark:text-success-300',
             closeButtonClass:
-                'text-emerald-700/70 hover:text-emerald-800 hover:bg-emerald-100/50 active:bg-emerald-200/50 dark:text-emerald-300/70 dark:hover:text-emerald-200 dark:hover:bg-emerald-900/30 dark:active:bg-emerald-800/40',
+                'text-success-700/70 hover:text-success-800 hover:bg-success-100/50 active:bg-success-200/50 dark:text-success-300/70 dark:hover:text-success-200 dark:hover:bg-success-900/30 dark:active:bg-success-800/40',
             closeRingClass:
-                'focus-visible:ring-emerald-400 focus-visible:ring-offset-2',
+                'focus-visible:ring-success-400 focus-visible:ring-offset-2',
             a11y: { role: 'status', ariaLive: 'polite' },
         };
     }
@@ -37,14 +37,14 @@ function getToastUi(variant: ToastVariant): ToastUi {
     if (variant === 'warning') {
         return {
             containerClass:
-                'border-amber-600/60 bg-amber-50/90 text-slate-900 dark:border-amber-500/60 dark:bg-amber-950/90 dark:text-amber-50',
+                'border-warning-600/60 bg-warning-50/90 text-secondary-900 dark:border-warning-500/60 dark:bg-warning-950/90 dark:text-warning-50',
             iconWrapperClass:
-                'bg-amber-500/15 text-amber-800 dark:bg-amber-500/30 dark:text-amber-300',
-            iconClass: 'text-amber-800 dark:text-amber-300',
+                'bg-warning-500/15 text-warning-800 dark:bg-warning-500/30 dark:text-warning-300',
+            iconClass: 'text-warning-800 dark:text-warning-300',
             closeButtonClass:
-                'text-amber-800/70 hover:text-amber-900 hover:bg-amber-100/50 active:bg-amber-200/50 dark:text-amber-300/70 dark:hover:text-amber-200 dark:hover:bg-amber-900/30 dark:active:bg-amber-800/40',
+                'text-warning-800/70 hover:text-warning-900 hover:bg-warning-100/50 active:bg-warning-200/50 dark:text-warning-300/70 dark:hover:text-warning-200 dark:hover:bg-warning-900/30 dark:active:bg-warning-800/40',
             closeRingClass:
-                'focus-visible:ring-amber-400 focus-visible:ring-offset-2',
+                'focus-visible:ring-warning-400 focus-visible:ring-offset-2',
             a11y: { role: 'status', ariaLive: 'polite' },
         };
     }
@@ -52,28 +52,28 @@ function getToastUi(variant: ToastVariant): ToastUi {
     if (variant === 'error') {
         return {
             containerClass:
-                'border-rose-600/60 bg-rose-50/90 text-slate-900 dark:border-rose-500/60 dark:bg-rose-950/90 dark:text-rose-50',
+                'border-danger-600/60 bg-danger-50/90 text-secondary-900 dark:border-danger-500/60 dark:bg-danger-950/90 dark:text-danger-50',
             iconWrapperClass:
-                'bg-rose-500/15 text-rose-800 dark:bg-rose-500/30 dark:text-rose-300',
-            iconClass: 'text-rose-800 dark:text-rose-300',
+                'bg-danger-500/15 text-danger-800 dark:bg-danger-500/30 dark:text-danger-300',
+            iconClass: 'text-danger-800 dark:text-danger-300',
             closeButtonClass:
-                'text-rose-800/70 hover:text-rose-900 hover:bg-rose-100/50 active:bg-rose-200/50 dark:text-rose-300/70 dark:hover:text-rose-200 dark:hover:bg-rose-900/30 dark:active:bg-rose-800/40',
+                'text-danger-800/70 hover:text-danger-900 hover:bg-danger-100/50 active:bg-danger-200/50 dark:text-danger-300/70 dark:hover:text-danger-200 dark:hover:bg-danger-900/30 dark:active:bg-danger-800/40',
             closeRingClass:
-                'focus-visible:ring-rose-400 focus-visible:ring-offset-2',
+                'focus-visible:ring-danger-400 focus-visible:ring-offset-2',
             a11y: { role: 'alert', ariaLive: 'assertive' },
         };
     }
 
     return {
         containerClass:
-            'border-sky-600/60 bg-white/90 text-slate-900 dark:border-sky-500/60 dark:bg-slate-900/90 dark:text-sky-50',
+            'border-primary-600/60 bg-white/90 text-secondary-900 dark:border-primary-500/60 dark:bg-secondary-900/90 dark:text-primary-50',
         iconWrapperClass:
-            'bg-sky-500/15 text-sky-800 dark:bg-sky-500/30 dark:text-sky-300',
-        iconClass: 'text-sky-800 dark:text-sky-300',
+            'bg-primary-500/15 text-primary-800 dark:bg-primary-500/30 dark:text-primary-300',
+        iconClass: 'text-primary-800 dark:text-primary-300',
         closeButtonClass:
-            'text-slate-700/70 hover:text-slate-900 hover:bg-slate-100/50 active:bg-slate-200/50 dark:text-slate-300/70 dark:hover:text-slate-200 dark:hover:bg-slate-800/50 dark:active:bg-slate-700/60',
+            'text-secondary-700/70 hover:text-secondary-900 hover:bg-secondary-100/50 active:bg-secondary-200/50 dark:text-secondary-300/70 dark:hover:text-secondary-200 dark:hover:bg-secondary-800/50 dark:active:bg-secondary-700/60',
         closeRingClass:
-            'focus-visible:ring-sky-400 focus-visible:ring-offset-2',
+            'focus-visible:ring-primary-400 focus-visible:ring-offset-2',
         a11y: { role: 'status', ariaLive: 'polite' },
     };
 }
@@ -151,7 +151,7 @@ function handleCloseKeyDown(event: KeyboardEvent, toastId: string) {
                             </p>
                             <p
                                 v-if="toast.description"
-                                class="mt-1 text-sm text-slate-700 dark:text-slate-300"
+                                class="mt-1 text-sm text-secondary-700 dark:text-secondary-300"
                             >
                                 {{ toast.description }}
                             </p>

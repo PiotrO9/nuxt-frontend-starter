@@ -1,6 +1,6 @@
 <template>
     <header
-        class="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80"
+        class="sticky top-0 z-40 border-b border-secondary-200 bg-white/80 backdrop-blur dark:border-secondary-800 dark:bg-secondary-950/80"
     >
         <div
             class="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-4"
@@ -8,7 +8,7 @@
             <div class="flex items-center gap-3">
                 <NuxtLink
                     to="/"
-                    class="rounded-xl px-3 py-2 text-sm font-bold text-slate-900 transition hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-50 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-950"
+                    class="rounded-xl px-3 py-2 text-sm font-bold text-secondary-900 transition hover:bg-secondary-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-secondary-50 dark:hover:bg-secondary-800 dark:focus-visible:ring-offset-secondary-950"
                     aria-label="Go to home page"
                 >
                     Frontend Starter
@@ -21,7 +21,7 @@
                         v-for="link in navLinks"
                         :key="link.to"
                         :to="link.to"
-                        class="rounded-xl px-3 py-2 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950"
+                        class="rounded-xl px-3 py-2 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-secondary-950"
                         :class="linkClass(link.to)"
                         :aria-label="link.ariaLabel"
                     >
@@ -36,8 +36,8 @@
                     :aria-label="switchAriaLabel"
                     left-icon="heroicons:sun"
                     right-icon="heroicons:moon"
-                    left-icon-class="text-amber-500"
-                    right-icon-class="text-slate-600 dark:text-slate-300"
+                    left-icon-class="text-warning-500"
+                    right-icon-class="text-secondary-600 dark:text-secondary-300"
                     @update:checked="handleToggleDarkMode"
                 />
                 <Button
@@ -96,9 +96,9 @@ function linkClass(to: string): string {
     const isActive = route.path === to;
 
     if (isActive)
-        return 'bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-slate-50';
+        return 'bg-secondary-100 text-secondary-900 dark:bg-secondary-800 dark:text-secondary-50';
 
-    return 'text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-slate-50';
+    return 'text-secondary-700 hover:bg-secondary-100 hover:text-secondary-900 dark:text-secondary-300 dark:hover:bg-secondary-800 dark:hover:text-secondary-50';
 }
 
 async function handleLogout() {

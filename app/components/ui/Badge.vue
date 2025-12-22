@@ -36,15 +36,16 @@ const badgeClass = computed(() => {
     };
 
     const variantClasses = {
-        primary: 'bg-sky-100 text-sky-800 dark:bg-sky-900/30 dark:text-sky-300',
+        primary:
+            'bg-primary-100 text-primary-800 dark:bg-primary-900/30 dark:text-primary-300',
         secondary:
-            'bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200',
+            'bg-secondary-100 text-secondary-800 dark:bg-secondary-800 dark:text-secondary-200',
         success:
-            'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300',
+            'bg-success-100 text-success-800 dark:bg-success-900/30 dark:text-success-300',
         warning:
-            'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300',
-        danger: 'bg-rose-100 text-rose-800 dark:bg-rose-900/30 dark:text-rose-300',
-        info: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300',
+            'bg-warning-100 text-warning-800 dark:bg-warning-900/30 dark:text-warning-300',
+        danger: 'bg-danger-100 text-danger-800 dark:bg-danger-900/30 dark:text-danger-300',
+        info: 'bg-info-100 text-info-800 dark:bg-info-900/30 dark:text-info-300',
     };
 
     return `${base} ${sizeClasses[props.size]} ${variantClasses[props.variant]}`;
